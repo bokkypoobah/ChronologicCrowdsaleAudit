@@ -16,18 +16,6 @@ TOKENSOL=`grep ^TOKENSOL= settings.txt | sed "s/^.*=//"`
 TOKENTEMPSOL=`grep ^TOKENTEMPSOL= settings.txt | sed "s/^.*=//"`
 TOKENJS=`grep ^TOKENJS= settings.txt | sed "s/^.*=//"`
 
-PRICINGSOL=`grep ^PRICINGSOL= settings.txt | sed "s/^.*=//"`
-PRICINGTEMPSOL=`grep ^PRICINGTEMPSOL= settings.txt | sed "s/^.*=//"`
-PRICINGJS=`grep ^PRICINGJS= settings.txt | sed "s/^.*=//"`
-
-CROWDSALESOL=`grep ^CROWDSALESOL= settings.txt | sed "s/^.*=//"`
-CROWDSALETEMPSOL=`grep ^CROWDSALETEMPSOL= settings.txt | sed "s/^.*=//"`
-CROWDSALEJS=`grep ^CROWDSALEJS= settings.txt | sed "s/^.*=//"`
-
-FINALIZEAGENTSOL=`grep ^FINALIZEAGENTSOL= settings.txt | sed "s/^.*=//"`
-FINALIZEAGENTTEMPSOL=`grep ^FINALIZEAGENTTEMPSOL= settings.txt | sed "s/^.*=//"`
-FINALIZEAGENTJS=`grep ^FINALIZEAGENTJS= settings.txt | sed "s/^.*=//"`
-
 DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
 
 INCLUDEJS=`grep ^INCLUDEJS= settings.txt | sed "s/^.*=//"`
@@ -61,18 +49,6 @@ printf "TOKENSOL             = '$TOKENSOL'\n" | tee -a $TEST1OUTPUT
 printf "TOKENTEMPSOL         = '$TOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
 printf "TOKENJS              = '$TOKENJS'\n" | tee -a $TEST1OUTPUT
 
-printf "PRICINGSOL           = '$PRICINGSOL'\n" | tee -a $TEST1OUTPUT
-printf "PRICINGTEMPSOL       = '$PRICINGTEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "PRICINGJS            = '$PRICINGJS'\n" | tee -a $TEST1OUTPUT
-
-printf "CROWDSALESOL         = '$CROWDSALESOL'\n" | tee -a $TEST1OUTPUT
-printf "CROWDSALETEMPSOL     = '$CROWDSALETEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "CROWDSALEJS          = '$CROWDSALEJS'\n" | tee -a $TEST1OUTPUT
-
-printf "FINALIZEAGENTSOL     = '$FINALIZEAGENTSOL'\n" | tee -a $TEST1OUTPUT
-printf "FINALIZEAGENTTEMPSOL = '$FINALIZEAGENTTEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "FINALIZEAGENTJS      = '$FINALIZEAGENTJS'\n" | tee -a $TEST1OUTPUT
-
 printf "DEPLOYMENTDATA       = '$DEPLOYMENTDATA'\n" | tee -a $TEST1OUTPUT
 printf "INCLUDEJS            = '$INCLUDEJS'\n" | tee -a $TEST1OUTPUT
 printf "TEST1OUTPUT          = '$TEST1OUTPUT'\n" | tee -a $TEST1OUTPUT
@@ -83,16 +59,10 @@ printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL`
-`cp $CONTRACTSDIR/$PRICINGSOL $PRICINGTEMPSOL`
-`cp $CONTRACTSDIR/$CROWDSALESOL $CROWDSALETEMPSOL`
-`cp $CONTRACTSDIR/$FINALIZEAGENTSOL $FINALIZEAGENTTEMPSOL`
 
 # Copy secondary files
 `cp $CONTRACTSDIR/Ownable.sol .`
-`cp $CONTRACTSDIR/Haltable.sol .`
 `cp $CONTRACTSDIR/SafeMathLib.sol .`
-`cp $CONTRACTSDIR/Crowdsale.sol .`
-`cp $CONTRACTSDIR/FinalizeAgent.sol .`
 `cp $CONTRACTSDIR/ERC20Basic.sol .`
 `cp $CONTRACTSDIR/ERC20.sol .`
 `cp $CONTRACTSDIR/ReleasableToken.sol .`
@@ -100,69 +70,31 @@ printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 `cp $CONTRACTSDIR/MintableToken.sol .`
 `cp $CONTRACTSDIR/UpgradeAgent.sol .`
 `cp $CONTRACTSDIR/UpgradeableToken.sol .`
-`cp $CONTRACTSDIR/PricingStrategy.sol .`
-`cp modifiedContracts/* .`
+# `cp modifiedContracts/* .`
 
 # --- Modify dates ---
-`perl -pi -e "s/address crowdsaleAddress;/address public crowdsaleAddress;/" $TOKENTEMPSOL`
-`perl -pi -e "s/address bonusFinalizeAgentAddress;/address public bonusFinalizeAgentAddress;/" $TOKENTEMPSOL`
+#`perl -pi -e "s/address crowdsaleAddress;/address public crowdsaleAddress;/" $TOKENTEMPSOL`
+#`perl -pi -e "s/address bonusFinalizeAgentAddress;/address public bonusFinalizeAgentAddress;/" $TOKENTEMPSOL`
 
-`perl -pi -e "s/uint preMinWei;/uint public preMinWei;/" Crowdsale.sol`
-`perl -pi -e "s/uint preMaxWei;/uint public preMaxWei;/" Crowdsale.sol`
-`perl -pi -e "s/uint minWei;/uint public minWei;/" Crowdsale.sol`
-`perl -pi -e "s/uint maxWei;/uint public maxWei;/" Crowdsale.sol`
+#`perl -pi -e "s/uint preMinWei;/uint public preMinWei;/" Crowdsale.sol`
+#`perl -pi -e "s/uint preMaxWei;/uint public preMaxWei;/" Crowdsale.sol`
+#`perl -pi -e "s/uint minWei;/uint public minWei;/" Crowdsale.sol`
+#`perl -pi -e "s/uint maxWei;/uint public maxWei;/" Crowdsale.sol`
 
 DIFFS1=`diff $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL`
 echo "--- Differences $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-DIFFS1=`diff $CONTRACTSDIR/$PRICINGSOL $PRICINGTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$PRICINGSOL $PRICINGTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/$CROWDSALESOL $CROWDSALETEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$CROWDSALESOL $CROWDSALETEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/Crowdsale.sol Crowdsale.sol`
-echo "--- Differences $CONTRACTSDIR/Crowdsale.sol Crowdsale.sol ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/$FINALIZEAGENTSOL $FINALIZEAGENTTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$FINALIZEAGENTSOL $FINALIZEAGENTTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
 echo "var tokenOutput=`solc --optimize --combined-json abi,bin,interface $TOKENTEMPSOL`;" > $TOKENJS
-
-echo "var pricingOutput=`solc --optimize --combined-json abi,bin,interface $PRICINGTEMPSOL`;" > $PRICINGJS
-
-echo "var crowdsaleOutput=`solc --optimize --combined-json abi,bin,interface $CROWDSALETEMPSOL`;" > $CROWDSALEJS
-
-echo "var finaliserOutput=`solc --optimize --combined-json abi,bin,interface $FINALIZEAGENTTEMPSOL`;" > $FINALIZEAGENTJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$TOKENJS");
-loadScript("$PRICINGJS");
-loadScript("$CROWDSALEJS");
-loadScript("$FINALIZEAGENTJS");
 loadScript("functions.js");
 
 var tokenAbi = JSON.parse(tokenOutput.contracts["$TOKENTEMPSOL:DayToken"].abi);
 var tokenBin = "0x" + tokenOutput.contracts["$TOKENTEMPSOL:DayToken"].bin;
 
-var pricingAbi = JSON.parse(pricingOutput.contracts["$PRICINGTEMPSOL:FlatPricing"].abi);
-var pricingBin = "0x" + pricingOutput.contracts["$PRICINGTEMPSOL:FlatPricing"].bin;
-
-var crowdsaleAbi = JSON.parse(crowdsaleOutput.contracts["$CROWDSALETEMPSOL:AddressCappedCrowdsale"].abi);
-var crowdsaleBin = "0x" + crowdsaleOutput.contracts["$CROWDSALETEMPSOL:AddressCappedCrowdsale"].bin;
-
-var finaliserAbi = JSON.parse(finaliserOutput.contracts["$FINALIZEAGENTTEMPSOL:BonusFinalizeAgent"].abi);
-var finaliserBin = "0x" + finaliserOutput.contracts["$FINALIZEAGENTTEMPSOL:BonusFinalizeAgent"].bin;
-
 // console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
-// console.log("DATA: pricingAbi=" + JSON.stringify(pricingAbi));
-// console.log("DATA: crowdsaleAbi=" + JSON.stringify(crowdsaleAbi));
-// console.log("DATA: finaliserAbi=" + JSON.stringify(finaliserAbi));
 
 unlockAccounts("$PASSWORD");
 printBalances();
@@ -170,7 +102,7 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var deployTokenMessage = "Deploy CrowdsaleToken Contract";
+var deployTokenMessage = "Deploy DayToken Contract";
 // -----------------------------------------------------------------------------
 var _tokenName = "Day";
 var _tokenSymbol = "DAY";
@@ -178,21 +110,20 @@ var _tokenDecimals = 18;
 var _tokenInitialSupply = 11000000000000000000;
 var _tokenMintable = true;
 var _maxAddresses = 3333;
-var _totalPreIcoAddresses = 333;
-var _totalIcoAddresses = 2894;
-var _totalPostIcoAddresses = 88 + 18 - 5;
-var _updateAllBalancesEnabled = false;
-var _minMintingPower = 500000000000000000;
-var _maxMintingPower = 1000000000000000000;
+var _firstTeamContributorId = 10;
+var _totalTeamContributorIds = 5;
+var _totalPostIcoContributorIds = 5;
+var _minMintingPower = 5000000000000000000;
+var _maxMintingPower = 10000000000000000000;
 var _halvingCycle = 88;
 var _minBalanceToSell = 8888;
 var _DayInSecs = 84600;
 var _teamLockPeriodInSec = 15780000;
-// function DayToken(string _name, string _symbol, uint _initialSupply, uint8 _decimals, 
-//   bool _mintable, uint _maxAddresses, uint _totalPreIcoAddresses, uint _totalIcoAddresses, 
-//   uint _totalPostIcoAddresses, uint256 _minMintingPower, uint256 _maxMintingPower, uint _halvingCycle, 
-//   bool _updateAllBalancesEnabled, uint256 _minBalanceToSell, 
-//   uint256 _dayInSecs, uint256 _teamLockPeriodInSec) 
+
+// function DayToken(string _name, string _symbol, uint _initialSupply, uint8 _decimals,
+//   bool _mintable, uint _maxAddresses, uint _firstTeamContributorId, uint _totalTeamContributorIds, 
+//   uint _totalPostIcoContributorIds, uint256 _minMintingPower, uint256 _maxMintingPower, uint _halvingCycle, 
+//   uint256 _minBalanceToSell, uint256 _dayInSecs, uint256 _teamLockPeriodInSec) 
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + deployTokenMessage);
 var tokenContract = web3.eth.contract(tokenAbi);
@@ -201,8 +132,9 @@ var tokenTx = null;
 var tokenAddress = null;
 
 var token = tokenContract.new(_tokenName, _tokenSymbol, _tokenInitialSupply, _tokenDecimals, _tokenMintable,
-    _maxAddresses, _totalPreIcoAddresses, _totalIcoAddresses, _totalPostIcoAddresses, _minMintingPower, _maxMintingPower, _halvingCycle,
-    _updateAllBalancesEnabled, _minBalanceToSell, _DayInSecs, _teamLockPeriodInSec, {from: contractOwnerAccount, data: tokenBin, gas: 6000000},
+    _maxAddresses, _firstTeamContributorId, _totalTeamContributorIds, _totalPostIcoContributorIds, 
+    _minMintingPower, _maxMintingPower, _halvingCycle,
+    _minBalanceToSell, _DayInSecs, _teamLockPeriodInSec, {from: contractOwnerAccount, data: tokenBin, gas: 6000000},
   function(e, contract) {
     if (!e) {
       if (!contract.address) {
@@ -218,45 +150,56 @@ var token = tokenContract.new(_tokenName, _tokenSymbol, _tokenInitialSupply, _to
 );
 
 
-// -----------------------------------------------------------------------------
-var deployPricingMessage = "Deploy Pricing Contract";
-// -----------------------------------------------------------------------------
-var _oneTokenInWei = 41666666666666666;
-// function FlatPricing(uint _oneTokenInWei)
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + deployPricingMessage);
-var pricingContract = web3.eth.contract(pricingAbi);
-// console.log(JSON.stringify(pricingContract));
-var pricingTx = null;
-var pricingAddress = null;
-
-var pricing = pricingContract.new(_oneTokenInWei, {from: contractOwnerAccount, data: pricingBin, gas: 6000000},
-  function(e, contract) {
-    if (!e) {
-      if (!contract.address) {
-        pricingTx = contract.transactionHash;
-      } else {
-        pricingAddress = contract.address;
-        addAccount(pricingAddress, "Pricing");
-        addPricingContractAddressAndAbi(pricingAddress, pricingAbi);
-        console.log("DATA: pricingAddress=" + pricingAddress);
-      }
-    }
-  }
-);
-
 while (txpool.status.pending > 0) {
 }
 
 printTxData("tokenAddress=" + tokenAddress, tokenTx);
-printTxData("pricingAddress=" + pricingAddress, pricingTx);
 printBalances();
 failIfGasEqualsGasUsed(tokenTx, deployTokenMessage);
-failIfGasEqualsGasUsed(pricingTx, deployPricingMessage);
 printTokenContractDetails();
 printPricingContractDetails();
 console.log("RESULT: ");
 
+
+// -----------------------------------------------------------------------------
+var setMintAgentMessage = "Set Mint Agent";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + setMintAgentMessage);
+var setMintAgent1Tx = token.setMintAgent(contractOwnerAccount, true, {from: contractOwnerAccount, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("setMintAgent1Tx", setMintAgent1Tx);
+printBalances();
+failIfGasEqualsGasUsed(setMintAgent1Tx, setMintAgentMessage);
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var allocMinter1Message = "Allocate Minter";
+// totalNormalContributorIds = maxAddresses - _totalTeamContributorIds - _totalPostIcoContributorIds;
+// var _maxAddresses = 3333;
+// var _totalTeamContributorIds = 5;
+// var _totalPostIcoContributorIds = 5;
+// totalNormalContributorIds = 3333 - 5 - 5 = 3323;
+// var _firstTeamContributorId = 10;
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + allocMinter1Message);
+var tokens = web3.toWei("100", "ether");
+var allocMinter1Tx = token.allocateNormalTimeMints(account7, 7, 1007, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+var allocMinter2Tx = token.allocateNormalTimeMints(account8, 8, 1008, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("allocMinter1Tx", allocMinter1Tx);
+printTxData("allocMinter2Tx", allocMinter2Tx);
+printBalances();
+failIfGasEqualsGasUsed(allocMinter1Tx, allocMinter1Message + " - ac7 custid7 id7 100");
+failIfGasEqualsGasUsed(allocMinter2Tx, allocMinter1Message + " - ac8 custid8 id8 100");
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+exit;
 
 // -----------------------------------------------------------------------------
 var deployCrowdsaleMessage = "Deploy Crowdsale Contract";

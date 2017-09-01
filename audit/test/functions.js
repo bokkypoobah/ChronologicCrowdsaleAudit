@@ -9,12 +9,12 @@ var accountNames = {};
 
 addAccount(eth.accounts[0], "Account #0 - Miner");
 addAccount(eth.accounts[1], "Account #1 - Contract Owner");
-addAccount(eth.accounts[2], "Account #2 - Multisig");
-addAccount(eth.accounts[3], "Account #3 - Team #1");
-addAccount(eth.accounts[4], "Account #4 - Team #2");
-addAccount(eth.accounts[5], "Account #5 - Team #3");
-addAccount(eth.accounts[6], "Account #6 - Test Address #1");
-addAccount(eth.accounts[7], "Account #7 - Test Address #2");
+addAccount(eth.accounts[2], "Account #2 - Team #1");
+addAccount(eth.accounts[3], "Account #3 - Team #2");
+addAccount(eth.accounts[4], "Account #4 - Team #3");
+addAccount(eth.accounts[5], "Account #5 - Test Address #1");
+addAccount(eth.accounts[6], "Account #6 - Test Address #2");
+addAccount(eth.accounts[7], "Account #7");
 addAccount(eth.accounts[8], "Account #8");
 addAccount(eth.accounts[9], "Account #9");
 addAccount(eth.accounts[10], "Account #A");
@@ -27,12 +27,12 @@ addAccount(eth.accounts[15], "Account #E");
 
 var minerAccount = eth.accounts[0];
 var contractOwnerAccount = eth.accounts[1];
-var multisig = eth.accounts[2];
-var team1 = eth.accounts[3];
-var team2 = eth.accounts[4];
-var team3 = eth.accounts[5];
-var testAddress1 = eth.accounts[6];
-var testAddress2 = eth.accounts[7];
+var team1 = eth.accounts[2];
+var team2 = eth.accounts[3];
+var team3 = eth.accounts[4];
+var testAddress1 = eth.accounts[5];
+var testAddress2 = eth.accounts[6];
+var account7 = eth.accounts[7];
 var account8 = eth.accounts[8];
 var account9 = eth.accounts[9];
 var account10 = eth.accounts[10];
@@ -291,26 +291,12 @@ function printTokenContractDetails() {
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals));
     console.log("RESULT: token.mintingFinished=" + contract.mintingFinished());
     console.log("RESULT: token.latestAllUpdate=" + contract.latestAllUpdate());
-    // console.log("RESULT: token.latestContributerId=" + contract.latestContributerId());
-    console.log("RESULT: token.nextIcoContributorId=" + contract.nextIcoContributorId());
-    console.log("RESULT: token.maxAddresses=" + contract.maxAddresses());
-    console.log("RESULT: token.totalPreIcoAddresses=" + contract.totalPreIcoAddresses());
-    console.log("RESULT: token.totalIcoAddresses=" + contract.totalIcoAddresses());
-    // console.log("RESULT: token.totalTeamAddresses=" + contract.totalTeamAddresses());
-    console.log("RESULT: token.totalPostIcoAddresses=" + contract.totalPostIcoAddresses());
-    
-    // token.maxAddresses=3333
-    // token.totalPreIcoAddresses=333
-    // token.totalIcoAddresses=2894
-    // 3333-3227 = 106
-    // token.totalPostIcoAddresses = 88
-    
-    // console.log("RESULT: token.totalTeamAddresses=" + contract.totalTeamAddresses());
-    // console.log("RESULT: token.totalTeamAddresses=" + contract.totalTeamAddresses());
-    
-    // uint totalAddresses = token.totalPreIcoAddresses() + token.totalIcoAddresses() + totalTeamAddresses + 
-    // totalTestAddresses + token.totalPostIcoAddresses();
-    
+    // console.log("RESULT: token.nextIcoContributorId=" + contract.nextIcoContributorId());
+    // console.log("RESULT: token.maxAddresses=" + contract.maxAddresses());
+    // console.log("RESULT: token.totalPreIcoAddresses=" + contract.totalPreIcoAddresses());
+    // console.log("RESULT: token.totalIcoAddresses=" + contract.totalIcoAddresses());
+    // console.log("RESULT: token.totalPostIcoAddresses=" + contract.totalPostIcoAddresses());
+
     console.log("RESULT: token.minMintingPower=" + contract.minMintingPower() + " " + contract.minMintingPower().shift(-19) + "%");
     console.log("RESULT: token.maxMintingPower=" + contract.maxMintingPower() + " " + contract.maxMintingPower().shift(-19) + "%");
     console.log("RESULT: token.halvingCycle=" + contract.halvingCycle());
@@ -330,6 +316,69 @@ function printTokenContractDetails() {
 
     var latestBlock = eth.blockNumber;
     var i;
+
+    var updatedTokenInformationEvents = contract.UpdatedTokenInformation({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    updatedTokenInformationEvents.watch(function (error, result) {
+      console.log("RESULT: UpdatedTokenInformation " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    updatedTokenInformationEvents.stopWatching();
+
+    var updateFailedEvents = contract.UpdateFailed({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    updateFailedEvents.watch(function (error, result) {
+      console.log("RESULT: UpdateFailed " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    updateFailedEvents.stopWatching();
+
+    var upToDateEvents = contract.UpToDate({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    upToDateEvents.watch(function (error, result) {
+      console.log("RESULT: UpToDate " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    upToDateEvents.stopWatching();
+
+    var mintingAdrTransferredEvents = contract.MintingAdrTransferred({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    mintingAdrTransferredEvents.watch(function (error, result) {
+      console.log("RESULT: MintingAdrTransferred " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    mintingAdrTransferredEvents.stopWatching();
+
+    var contributorAddedEvents = contract.ContributorAdded({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    contributorAddedEvents.watch(function (error, result) {
+      console.log("RESULT: ContributorAdded " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    contributorAddedEvents.stopWatching();
+
+    var onSaleEvents = contract.OnSale({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    onSaleEvents.watch(function (error, result) {
+      console.log("RESULT: OnSale " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    onSaleEvents.stopWatching();
+
+    var postInvestedEvents = contract.PostInvested({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    postInvestedEvents.watch(function (error, result) {
+      console.log("RESULT: PostInvested " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    postInvestedEvents.stopWatching();
+
+    var teamAddressAddedEvents = contract.TeamAddressAdded({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    teamAddressAddedEvents.watch(function (error, result) {
+      console.log("RESULT: TeamAddressAdded " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    teamAddressAddedEvents.stopWatching();
+
+    var investedEvents = contract.Invested({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    investedEvents.watch(function (error, result) {
+      console.log("RESULT: Invested " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    investedEvents.stopWatching();
 
     var approvalEvents = contract.Approval({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;

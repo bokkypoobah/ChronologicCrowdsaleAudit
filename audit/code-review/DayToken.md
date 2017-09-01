@@ -7,8 +7,10 @@ Source file [../../contracts/DayToken.sol](../../contracts/DayToken.sol).
 <hr />
 
 ```javascript
+// BK Ok
 pragma solidity ^0.4.13; 
 
+// BK Next 5 Ok
 import "./StandardToken.sol"; 
 import "./UpgradeableToken.sol"; 
 import "./ReleasableToken.sol"; 
@@ -27,8 +29,10 @@ import "./SafeMathLib.sol";
  * - The token can be capped (supply set in the constructor) 
  *   or uncapped (crowdsale contract can mint new tokens)
  */
+// BK Ok
 contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
 
+    // BK Ok
     enum sellingStatus {NOTONSALE, EXPIRED, ONSALE}
 
     /** Basic structure for a contributor with a minting Address
@@ -42,6 +46,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
      * status Selling status Variable for transfer Minting address.
      * sellingPriceInDay Variable for transfer Minting address. Price at which the address is actually sold
      */ 
+    // BK Ok
     struct Contributor {
         address adr;
         uint256 initialContributionDay;
