@@ -2,29 +2,22 @@
 
 Status: Work in progress
 
-Commits [3ba1fe83](https://github.com/chronologic/chronologic/commit/3ba1fe830881ca9e85f2c2db3e77b3b333bc4dd1),
-[fd679446](https://github.com/chronologic/chronologic/commit/fd679446f01c2d29b02856719548d6a35e8c34c8),
-[be2bbba9](https://github.com/chronologic/chronologic/commit/be2bbba97ba1c78206d2a21724f6e0b94c9afd93) and
-[73a775a6](https://github.com/chronologic/chronologic/commit/73a775a61af2c3acdc81dce604aa005e6bd96290).
+Commits with the crowdsale code were
+[3ba1fe8](https://github.com/chronologic/chronologic/commit/3ba1fe830881ca9e85f2c2db3e77b3b333bc4dd1),
+[fd67944](https://github.com/chronologic/chronologic/commit/fd679446f01c2d29b02856719548d6a35e8c34c8),
+[be2bbba](https://github.com/chronologic/chronologic/commit/be2bbba97ba1c78206d2a21724f6e0b94c9afd93) and
+[73a775a](https://github.com/chronologic/chronologic/commit/73a775a61af2c3acdc81dce604aa005e6bd96290).
+
+Commits without the crowdsale code were
+[677175a](https://github.com/chronologic/chronologic/commit/677175a5d698bd6f524f59de4cca7f6c1526f32d)
+[c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2)
+[17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860)
 
 ## Summary
 
-TODO
-
-<br />
-
-### Crowdsale Contract
-
-* Funds contributed during the crowdsale are immediately transferred to the multisig wallet
-* If the minimum funding goal is not met, contributed funds must be transferred back into the crowdsale contract for investors
-  to be able to withdraw their refunds
-
-<br />
-
-### Finalizer Contract
-
-* *WARNING* - The *BonusFinalizeAgent* must be correctly set for the crowdsale contract before the crowdsale contracts
-  `finalize()` function can be called, or the crowdsale will never be finalised correctly.
+The crowdsale contracts were not ready for deployment at the commencement of the crowdsale, so crowdsale participants
+sent their contributions to a multisig wallet at
+[0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121](https://etherscan.io/address/0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121).
 
 <br />
 
@@ -55,6 +48,8 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 <hr />
 
 ## Recommendations
+
+TODO: Review after removal of the crowdsale contracts.
 
 * **HIGH IMPORTANCE** - In *DayToken*, `balances[_to] = safeAdd(balances[msg.sender], _value);` in `transfer(...)` should be
   `balances[_to] = safeAdd(balances[to], _value); `
@@ -175,44 +170,26 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
 ## Code Review
 
-* Crowdsale Contract And Inheritance Dependencies
-  * [x] [code-review/Ownable.md](code-review/Ownable.md)
-    * [x] contract Ownable
-  * [x] [code-review/Haltable.md](code-review/Haltable.md)
-    * [x] contract Haltable is Ownable
-  * [x] [code-review/SafeMathLib.md](code-review/SafeMathLib.md)
-    * [x] contract SafeMathLib
-  * [x] [code-review/Crowdsale.md](code-review/Crowdsale.md)
-    * [x] contract Crowdsale is Haltable, SafeMathLib
-  * [x] [code-review/AddressCappedCrowdsale.md](code-review/AddressCappedCrowdsale.md)
-    * [x] contract AddressCappedCrowdsale is Crowdsale
-* Crowdsale Finaliser Contract And New Dependencies
-  * [x] [code-review/FinalizeAgent.md](code-review/FinalizeAgent.md)
-    * [x] contract FinalizeAgent
-  * [x] [code-review/BonusFinalizeAgent.md](code-review/BonusFinalizeAgent.md)
-    * [x] contract BonusFinalizeAgent is FinalizeAgent, SafeMathLib
-* Crowdsale Pricing Contract And New Dependencies
-  * [x] [code-review/PricingStrategy.md](code-review/PricingStrategy.md)
-    * [x] contract PricingStrategy
-  * [x] [code-review/FlatPricing.md](code-review/FlatPricing.md)
-    * [x] contract FlatPricing is PricingStrategy, SafeMathLib 
-* Token Contract And New Dependencies
-  * [x] [code-review/ERC20Basic.md](code-review/ERC20Basic.md)
-    * [x] contract ERC20Basic
-  * [x] [code-review/ERC20.md](code-review/ERC20.md)
-    * [x] contract ERC20 is ERC20Basic
-  * [x] [code-review/ReleasableToken.md](code-review/ReleasableToken.md)
-    * [x] contract ReleasableToken is ERC20, Ownable
-  * [x] [code-review/StandardToken.md](code-review/StandardToken.md)
-    * [x] contract StandardToken is ERC20, SafeMathLib 
-  * [x] [code-review/MintableToken.md](code-review/MintableToken.md)
-    * [x] contract MintableToken is StandardToken, Ownable
-  * [x] [code-review/UpgradeAgent.md](code-review/UpgradeAgent.md)
-    * [x] contract UpgradeAgent
-  * [x] [code-review/UpgradeableToken.md](code-review/UpgradeableToken.md)
-    * [x] contract UpgradeableToken is StandardToken 
-  * [ ] [code-review/DayToken.md](code-review/DayToken.md)
-    * [ ] contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken
+* [x] [code-review/Ownable.md](code-review/Ownable.md)
+  * [x] contract Ownable
+* [x] [code-review/SafeMathLib.md](code-review/SafeMathLib.md)
+  * [x] contract SafeMathLib
+* [x] [code-review/ERC20Basic.md](code-review/ERC20Basic.md)
+  * [x] contract ERC20Basic
+* [x] [code-review/ERC20.md](code-review/ERC20.md)
+  * [x] contract ERC20 is ERC20Basic
+* [x] [code-review/ReleasableToken.md](code-review/ReleasableToken.md)
+  * [x] contract ReleasableToken is ERC20, Ownable
+* [x] [code-review/StandardToken.md](code-review/StandardToken.md)
+  * [x] contract StandardToken is ERC20, SafeMathLib 
+* [x] [code-review/MintableToken.md](code-review/MintableToken.md)
+  * [x] contract MintableToken is StandardToken, Ownable
+* [x] [code-review/UpgradeAgent.md](code-review/UpgradeAgent.md)
+  * [x] contract UpgradeAgent
+* [x] [code-review/UpgradeableToken.md](code-review/UpgradeableToken.md)
+  * [x] contract UpgradeableToken is StandardToken 
+* [ ] [code-review/DayToken.md](code-review/DayToken.md)
+  * [ ] contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken
 
 <br />
 
