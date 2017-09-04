@@ -290,20 +290,23 @@ function printTokenContractDetails() {
     console.log("RESULT: token.decimals=" + decimals);
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals));
     console.log("RESULT: token.mintingFinished=" + contract.mintingFinished());
-    console.log("RESULT: token.latestAllUpdate=" + contract.latestAllUpdate());
-    // console.log("RESULT: token.nextIcoContributorId=" + contract.nextIcoContributorId());
-    // console.log("RESULT: token.maxAddresses=" + contract.maxAddresses());
-    // console.log("RESULT: token.totalPreIcoAddresses=" + contract.totalPreIcoAddresses());
-    // console.log("RESULT: token.totalIcoAddresses=" + contract.totalIcoAddresses());
-    // console.log("RESULT: token.totalPostIcoAddresses=" + contract.totalPostIcoAddresses());
-
+    console.log("RESULT: token.firstContributorId=" + contract.firstContributorId());
+    console.log("RESULT: token.totalNormalContributorIds=" + contract.totalNormalContributorIds());
+    console.log("RESULT: token.totalNormalContributorIdsAllocated=" + contract.totalNormalContributorIdsAllocated());
+    console.log("RESULT: token.firstTeamContributorId=" + contract.firstTeamContributorId());
+    console.log("RESULT: token.totalTeamContributorIds=" + contract.totalTeamContributorIds());
+    console.log("RESULT: token.totalTeamContributorIdsAllocated=" + contract.totalTeamContributorIdsAllocated());
+    console.log("RESULT: token.firstPostIcoContributorId=" + contract.firstPostIcoContributorId());
+    console.log("RESULT: token.totalPostIcoContributorIds=" + contract.totalPostIcoContributorIds());
+    console.log("RESULT: token.totalPostIcoContributorIdsAllocated=" + contract.totalPostIcoContributorIdsAllocated());
+    console.log("RESULT: token.maxAddresses=" + contract.maxAddresses());
     console.log("RESULT: token.minMintingPower=" + contract.minMintingPower() + " " + contract.minMintingPower().shift(-19) + "%");
     console.log("RESULT: token.maxMintingPower=" + contract.maxMintingPower() + " " + contract.maxMintingPower().shift(-19) + "%");
     console.log("RESULT: token.halvingCycle=" + contract.halvingCycle());
     var initialBlockTimestamp = contract.initialBlockTimestamp();
     console.log("RESULT: token.initialBlockTimestamp=" + initialBlockTimestamp + " " + new Date(initialBlockTimestamp * 1000).toUTCString());
+    console.log("RESULT: token.isInitialBlockTimestampSet=" + contract.isInitialBlockTimestampSet());
     console.log("RESULT: token.mintingDec=" + contract.mintingDec());
-    console.log("RESULT: token.bounty=" + contract.bounty());
     console.log("RESULT: token.minBalanceToSell=" + contract.minBalanceToSell());
     console.log("RESULT: token.teamLockPeriodInSec=" + contract.teamLockPeriodInSec());
     console.log("RESULT: token.DayInSecs=" + contract.DayInSecs());
@@ -323,20 +326,6 @@ function printTokenContractDetails() {
       console.log("RESULT: UpdatedTokenInformation " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     updatedTokenInformationEvents.stopWatching();
-
-    var updateFailedEvents = contract.UpdateFailed({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    updateFailedEvents.watch(function (error, result) {
-      console.log("RESULT: UpdateFailed " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    updateFailedEvents.stopWatching();
-
-    var upToDateEvents = contract.UpToDate({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    upToDateEvents.watch(function (error, result) {
-      console.log("RESULT: UpToDate " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    upToDateEvents.stopWatching();
 
     var mintingAdrTransferredEvents = contract.MintingAdrTransferred({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;

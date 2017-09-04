@@ -9,9 +9,10 @@ Commits with the crowdsale code were
 [73a775a](https://github.com/chronologic/chronologic/commit/73a775a61af2c3acdc81dce604aa005e6bd96290).
 
 Commits without the crowdsale code were
-[677175a](https://github.com/chronologic/chronologic/commit/677175a5d698bd6f524f59de4cca7f6c1526f32d)
-[c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2)
-[17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860)
+[677175a](https://github.com/chronologic/chronologic/commit/677175a5d698bd6f524f59de4cca7f6c1526f32d),
+[c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2),
+[17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860) and
+[6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417).
 
 ## Summary
 
@@ -49,7 +50,12 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
 ## Recommendations
 
-TODO: Review after removal of the crowdsale contracts.
+* **LOW IMPORTANCE** - In *DayToken*, `isDayTokenActivated()` should be marked as a constant
+* **LOW IMPORTANCE** - In *DayToken*, `isValidContributorId()` should be marked as a constant
+* **LOW IMPORTANCE** - In *DayToken*, `isValidContributorAddress()` should be marked as a constant
+* **LOW IMPORTANCE** - In *DayToken*, `isTeamLockInPeriodOverIfTeamAddress()` should be marked as a constant
+
+TODO: Review below after removal of the crowdsale contracts.
 
 * **HIGH IMPORTANCE** - In *DayToken*, `balances[_to] = safeAdd(balances[msg.sender], _value);` in `transfer(...)` should be
   `balances[_to] = safeAdd(balances[to], _value); `

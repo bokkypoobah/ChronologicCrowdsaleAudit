@@ -199,6 +199,20 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
+// -----------------------------------------------------------------------------
+var setInitialBlockTimestampMessage = "Set Initial Block Timestamp";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + setInitialBlockTimestampMessage);
+var setInitialBlockTimestampMessageTx = token.setInitialBlockTimestamp($STARTTIME, {from: contractOwnerAccount, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("setInitialBlockTimestampMessageTx", setInitialBlockTimestampMessageTx);
+printBalances();
+failIfGasEqualsGasUsed(setInitialBlockTimestampMessageTx, setInitialBlockTimestampMessage);
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
 exit;
 
 // -----------------------------------------------------------------------------

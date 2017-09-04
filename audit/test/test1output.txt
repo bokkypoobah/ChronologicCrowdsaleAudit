@@ -9,16 +9,16 @@ DEPLOYMENTDATA       = 'deploymentData.txt'
 INCLUDEJS            = './include.js'
 TEST1OUTPUT          = 'test1output.txt'
 TEST1RESULTS         = 'test1results.txt'
-CURRENTTIME          = '1504416099' 'Sun  3 Sep 2017 05:21:39 UTC'
-STARTTIME            = '1504416174' 'Sun  3 Sep 2017 05:22:54 UTC'
-ENDTIME              = '1504416279' 'Sun  3 Sep 2017 05:24:39 UTC'
+CURRENTTIME          = '1504717440' 'Wed  6 Sep 2017 17:04:00 UTC'
+STARTTIME            = '1504717515' 'Wed  6 Sep 2017 17:05:15 UTC'
+ENDTIME              = '1504717620' 'Wed  6 Sep 2017 17:07:00 UTC'
 --- Differences ../../contracts/DayToken.sol DayToken.sol ---
 
 Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.6.7-stable-ab5646c5/darwin-amd64/go1.8.3
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 996 (Sun, 03 Sep 2017 15:21:35 AEST)
+at block: 488 (Thu, 07 Sep 2017 03:03:44 AEST)
  datadir: /Users/bok/Projects/ChronologicCrowdsaleAudit/audit/test/testchain
  modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
@@ -40,7 +40,7 @@ undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       25.000000000000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       50.000000000000000000           0.000000000000000000 Account #0 - Miner
 RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
@@ -147,14 +147,14 @@ undefined
 undefined
 > 
 > 
-DATA: tokenAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
-RESULT: tokenAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0 gas=6000000 gasUsed=4308952 costETH=0.077561136 costUSD=20.351886964128 @ ETH/USD=262.398 gasPrice=18000000000 block=1003 txId=0x93d312ceebaeb648f24e310539e786f286e88dc4c35eb32e2bc7ff6309950ca3
+DATA: tokenAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+RESULT: tokenAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc gas=6000000 gasUsed=4049600 costETH=0.0728928 costUSD=19.1269249344 @ ETH/USD=262.398 gasPrice=18000000000 block=501 txId=0xc6e006d7072f3d4084d08e9fcda4a21e2e6af9c13e2b83c916e9db813e3e5d72
 undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.077561136000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.077561136000000000          11.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.072892800000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.072892800000000000          11.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -169,7 +169,7 @@ RESULT: 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.00000000000000000
 RESULT: 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 RESULT: 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 RESULT: 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-RESULT: 16 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+RESULT: 16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                    11.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -179,20 +179,29 @@ undefined
 RESULT: PASS Deploy DayToken Contract
 1
 > 
-RESULT: tokenContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
+RESULT: tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.symbol=DAY
 RESULT: token.name=Day
 RESULT: token.decimals=18
 RESULT: token.totalSupply=11
 RESULT: token.mintingFinished=false
-RESULT: token.latestAllUpdate=0
+RESULT: token.firstContributorId=1
+RESULT: token.totalNormalContributorIds=3323
+RESULT: token.totalNormalContributorIdsAllocated=0
+RESULT: token.firstTeamContributorId=10
+RESULT: token.totalTeamContributorIds=5
+RESULT: token.totalTeamContributorIdsAllocated=0
+RESULT: token.firstPostIcoContributorId=3329
+RESULT: token.totalPostIcoContributorIds=5
+RESULT: token.totalPostIcoContributorIdsAllocated=0
+RESULT: token.maxAddresses=3333
 RESULT: token.minMintingPower=5000000000000000000 0.5%
 RESULT: token.maxMintingPower=10000000000000000000 1%
 RESULT: token.halvingCycle=88
 RESULT: token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
+RESULT: token.isInitialBlockTimestampSet=false
 RESULT: token.mintingDec=19
-RESULT: token.bounty=0
 RESULT: token.minBalanceToSell=8888
 RESULT: token.teamLockPeriodInSec=15780000
 RESULT: token.DayInSecs=84600
@@ -225,13 +234,13 @@ undefined
 ... 
 undefined
 > 
-RESULT: setMintAgent1Tx gas=400000 gasUsed=45418 costETH=0.000817524 costUSD=0.214516662552 @ ETH/USD=262.398 gasPrice=18000000000 block=1009 txId=0xf868512b85b9d45b4bfd48fa56b157924a24e9da21d40c69906627546002f6c2
+RESULT: setMintAgent1Tx gas=400000 gasUsed=45352 costETH=0.000816336 costUSD=0.214204933728 @ ETH/USD=262.398 gasPrice=18000000000 block=503 txId=0x13f0f523529ae243ea4832a9711de9f6b33398915432749f3ab08609536dce89
 undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.078378660000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.078378660000000000          11.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.073709136000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.073709136000000000          11.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -246,7 +255,7 @@ RESULT: 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.00000000000000000
 RESULT: 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 RESULT: 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 RESULT: 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-RESULT: 16 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+RESULT: 16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                    11.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -256,20 +265,29 @@ undefined
 RESULT: PASS Set Mint Agent
 1
 > 
-RESULT: tokenContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
+RESULT: tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.symbol=DAY
 RESULT: token.name=Day
 RESULT: token.decimals=18
 RESULT: token.totalSupply=11
 RESULT: token.mintingFinished=false
-RESULT: token.latestAllUpdate=0
+RESULT: token.firstContributorId=1
+RESULT: token.totalNormalContributorIds=3323
+RESULT: token.totalNormalContributorIdsAllocated=0
+RESULT: token.firstTeamContributorId=10
+RESULT: token.totalTeamContributorIds=5
+RESULT: token.totalTeamContributorIdsAllocated=0
+RESULT: token.firstPostIcoContributorId=3329
+RESULT: token.totalPostIcoContributorIds=5
+RESULT: token.totalPostIcoContributorIdsAllocated=0
+RESULT: token.maxAddresses=3333
 RESULT: token.minMintingPower=5000000000000000000 0.5%
 RESULT: token.maxMintingPower=10000000000000000000 1%
 RESULT: token.halvingCycle=88
 RESULT: token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
+RESULT: token.isInitialBlockTimestampSet=false
 RESULT: token.mintingDec=19
-RESULT: token.bounty=0
 RESULT: token.minBalanceToSell=8888
 RESULT: token.teamLockPeriodInSec=15780000
 RESULT: token.DayInSecs=84600
@@ -315,16 +333,16 @@ undefined
 ... 
 undefined
 > 
-RESULT: allocMinter1Tx gas=400000 gasUsed=163852 costETH=0.002949336 costUSD=0.773899867728 @ ETH/USD=262.398 gasPrice=18000000000 block=1011 txId=0x7100bd45efddb6d3987f7ca16d167880ee16548061f24bbeb1e847d5fa9dbced
+RESULT: allocMinter1Tx gas=400000 gasUsed=163808 costETH=0.002948544 costUSD=0.773692048512 @ ETH/USD=262.398 gasPrice=18000000000 block=505 txId=0x8948f53de76ace1131b3dc021913226770e9474088c66f3fbf17a6ac8471526e
 undefined
 > 
-RESULT: allocMinter2Tx gas=400000 gasUsed=148852 costETH=0.002679336 costUSD=0.703052407728 @ ETH/USD=262.398 gasPrice=18000000000 block=1011 txId=0xf43b8fd96edf3be28f728cbec690b0639ec219b7221a2089307bd647c6feba1c
+RESULT: allocMinter2Tx gas=400000 gasUsed=148808 costETH=0.002678544 costUSD=0.702844588512 @ ETH/USD=262.398 gasPrice=18000000000 block=505 txId=0x0fd43dc798cc053f1ccc257723c8a3a812ed2d25f745937686e09be745385d68
 undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.084007332000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.084007332000000000          11.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.079336224000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.079336224000000000          11.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -339,7 +357,7 @@ RESULT: 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.00000000000000000
 RESULT: 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 RESULT: 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 RESULT: 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-RESULT: 16 0x938d22c583154e944cc0f6e83749261d88bf01f0        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+RESULT: 16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                   211.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -352,20 +370,29 @@ RESULT: PASS Allocate Minter - ac7 custid7 id7 100
 RESULT: PASS Allocate Minter - ac8 custid8 id8 100
 1
 > 
-RESULT: tokenContractAddress=0x938d22c583154e944cc0f6e83749261d88bf01f0
+RESULT: tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.symbol=DAY
 RESULT: token.name=Day
 RESULT: token.decimals=18
 RESULT: token.totalSupply=211
 RESULT: token.mintingFinished=false
-RESULT: token.latestAllUpdate=0
+RESULT: token.firstContributorId=1
+RESULT: token.totalNormalContributorIds=3323
+RESULT: token.totalNormalContributorIdsAllocated=2
+RESULT: token.firstTeamContributorId=10
+RESULT: token.totalTeamContributorIds=5
+RESULT: token.totalTeamContributorIdsAllocated=0
+RESULT: token.firstPostIcoContributorId=3329
+RESULT: token.totalPostIcoContributorIds=5
+RESULT: token.totalPostIcoContributorIdsAllocated=0
+RESULT: token.maxAddresses=3333
 RESULT: token.minMintingPower=5000000000000000000 0.5%
 RESULT: token.maxMintingPower=10000000000000000000 1%
 RESULT: token.halvingCycle=88
 RESULT: token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
+RESULT: token.isInitialBlockTimestampSet=false
 RESULT: token.mintingDec=19
-RESULT: token.bounty=0
 RESULT: token.minBalanceToSell=8888
 RESULT: token.teamLockPeriodInSec=15780000
 RESULT: token.DayInSecs=84600
@@ -374,12 +401,107 @@ RESULT: token.released=false
 RESULT: token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.upgradeAgent=0x0000000000000000000000000000000000000000
 RESULT: token.totalUpgraded=0
-RESULT: ContributorAdded 0 #1011 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
-RESULT: ContributorAdded 1 #1011 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
-RESULT: Invested 0 #1011 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-RESULT: Invested 1 #1011 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-RESULT: Transfer 0 #1011: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=100
-RESULT: Transfer 1 #1011: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=100
+RESULT: ContributorAdded 0 #505 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
+RESULT: ContributorAdded 1 #505 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
+RESULT: Invested 0 #505 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
+RESULT: Invested 1 #505 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
+RESULT: Transfer 0 #505: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=100
+RESULT: Transfer 1 #505: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=100
+undefined
+> 
+RESULT: 
+undefined
+> 
+> 
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+RESULT: Set Initial Block Timestamp
+undefined
+> 
+TypeError: 'setInitialBlockTimestamp' is not a function
+    at <anonymous>:1:41
+
+> 
+... 
+undefined
+> 
+Error: invalid argument 0: json: cannot unmarshal non-string into Go value of type common.Hash
+    at web3.js:3104:20
+    at web3.js:6191:15
+    at web3.js:5004:36
+    at printTxData (functions.js:125:12)
+    at <anonymous>:1:1
+
+> 
+RESULT:  # Account                                             EtherBalanceChange                          Token Name
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.079336224000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.079336224000000000          11.000000000000000000 Account #1 - Contract Owner
+RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Test Address #1
+RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6 - Test Address #2
+RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000         100.000000000000000000 Account #7
+RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000         100.000000000000000000 Account #8
+RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #A
+RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #B
+RESULT: 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #C
+RESULT: 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
+RESULT: 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
+RESULT: 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
+RESULT: 16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:                                                                                   211.000000000000000000 Total Token Balances
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT: 
+undefined
+> 
+Error: invalid argument 0: json: cannot unmarshal non-string into Go value of type common.Hash
+    at web3.js:3104:20
+    at web3.js:6191:15
+    at web3.js:5004:36
+    at failIfGasEqualsGasUsed (functions.js:151:13)
+    at <anonymous>:1:1
+
+> 
+RESULT: tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+RESULT: token.symbol=DAY
+RESULT: token.name=Day
+RESULT: token.decimals=18
+RESULT: token.totalSupply=211
+RESULT: token.mintingFinished=false
+RESULT: token.firstContributorId=1
+RESULT: token.totalNormalContributorIds=3323
+RESULT: token.totalNormalContributorIdsAllocated=2
+RESULT: token.firstTeamContributorId=10
+RESULT: token.totalTeamContributorIds=5
+RESULT: token.totalTeamContributorIdsAllocated=0
+RESULT: token.firstPostIcoContributorId=3329
+RESULT: token.totalPostIcoContributorIds=5
+RESULT: token.totalPostIcoContributorIdsAllocated=0
+RESULT: token.maxAddresses=3333
+RESULT: token.minMintingPower=5000000000000000000 0.5%
+RESULT: token.maxMintingPower=10000000000000000000 1%
+RESULT: token.halvingCycle=88
+RESULT: token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
+RESULT: token.isInitialBlockTimestampSet=false
+RESULT: token.mintingDec=19
+RESULT: token.minBalanceToSell=8888
+RESULT: token.teamLockPeriodInSec=15780000
+RESULT: token.DayInSecs=84600
+RESULT: token.releaseAgent=0x0000000000000000000000000000000000000000
+RESULT: token.released=false
+RESULT: token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+RESULT: token.upgradeAgent=0x0000000000000000000000000000000000000000
+RESULT: token.totalUpgraded=0
 undefined
 > 
 RESULT: 
