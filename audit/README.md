@@ -54,9 +54,15 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 ## Recommendations
 
 * **LOW IMPORTANCE** - In *DayToken*, `isDayTokenActivated()` should be marked as a constant
+  * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `isValidContributorId()` should be marked as a constant
+  * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `isValidContributorAddress()` should be marked as a constant
+  * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `isTeamLockInPeriodOverIfTeamAddress()` should be marked as a constant
+  * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
+* **LOW IMPORTANCE** - In *DayToken*, `getOnSaleAddresses()` should be named something other than `get...` as it is not a getter and it 
+  changes the state
 
 TODO: Review below after removal of the crowdsale contracts.
 
