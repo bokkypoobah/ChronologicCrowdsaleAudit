@@ -38,9 +38,9 @@ contract StandardToken is ERC20, SafeMathLib {
   // BK Ok
   function transfer(address _to, uint _value) returns (bool success) {
     // BK Ok - Account has balance to transfer
-    if (balances[msg.sender] >= _value
+    if (balances[msg.sender] >= _value 
         // BK Ok - Transferring non-zero value
-        && _value > 0
+        && _value > 0 
         // BK Ok - Overflow check
         && balances[_to] + _value > balances[_to]
         ) {
@@ -74,7 +74,8 @@ contract StandardToken is ERC20, SafeMathLib {
         && _value > 0              // Non-zero transfer
         // BK Ok - Overflow check
         && balances[_to] + _value > balances[_to]  // Overflow check
-        ){
+        ){ 
+
     // BK Ok
     allowed[_from][msg.sender] = safeSub(_allowance,_value);
     // BK Ok

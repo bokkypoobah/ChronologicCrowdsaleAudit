@@ -1,6 +1,6 @@
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       50.000000000000000000           0.000000000000000000 Account #0 - Miner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000           0.000000000000000000 Account #0 - Miner
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
@@ -22,11 +22,11 @@
 
 
 Deploy DayToken Contract
-tokenAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc gas=6000000 gasUsed=4049600 costETH=0.0728928 costUSD=19.1269249344 @ ETH/USD=262.398 gasPrice=18000000000 block=501 txId=0xc6e006d7072f3d4084d08e9fcda4a21e2e6af9c13e2b83c916e9db813e3e5d72
+tokenAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 gas=6000000 gasUsed=4105497 costETH=0.073898946 costUSD=19.390935632508 @ ETH/USD=262.398 gasPrice=18000000000 block=2 txId=0x620d3f3f6ddd6a6893e3a932789ee29e199f3a2c6d98a1464369242681b505fb
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.072892800000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.072892800000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       10.073898946000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.073898946000000000          11.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -41,13 +41,13 @@ tokenAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc gas=6000000 gasUsed=4049
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                    11.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DayToken Contract
-tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
@@ -81,11 +81,11 @@ token.totalUpgraded=0
 pricingContractAddress=null
 
 Set Mint Agent
-setMintAgent1Tx gas=400000 gasUsed=45352 costETH=0.000816336 costUSD=0.214204933728 @ ETH/USD=262.398 gasPrice=18000000000 block=503 txId=0x13f0f523529ae243ea4832a9711de9f6b33398915432749f3ab08609536dce89
+setMintAgent1Tx gas=400000 gasUsed=45352 costETH=0.000816336 costUSD=0.214204933728 @ ETH/USD=262.398 gasPrice=18000000000 block=4 txId=0x36b18c3ee8a0695966852714a250fa0189aa2aba0305b062071e7c2832de0314
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.073709136000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.073709136000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       20.074715282000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.074715282000000000          11.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -100,13 +100,13 @@ setMintAgent1Tx gas=400000 gasUsed=45352 costETH=0.000816336 costUSD=0.214204933
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                    11.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Set Mint Agent
-tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
@@ -139,12 +139,12 @@ token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
 
 Allocate Minter
-allocMinter1Tx gas=400000 gasUsed=163808 costETH=0.002948544 costUSD=0.773692048512 @ ETH/USD=262.398 gasPrice=18000000000 block=505 txId=0x8948f53de76ace1131b3dc021913226770e9474088c66f3fbf17a6ac8471526e
-allocMinter2Tx gas=400000 gasUsed=148808 costETH=0.002678544 costUSD=0.702844588512 @ ETH/USD=262.398 gasPrice=18000000000 block=505 txId=0x0fd43dc798cc053f1ccc257723c8a3a812ed2d25f745937686e09be745385d68
+allocMinter1Tx gas=400000 gasUsed=163808 costETH=0.002948544 costUSD=0.773692048512 @ ETH/USD=262.398 gasPrice=18000000000 block=7 txId=0xc388d65c20a57026e76b78853b59b159b8995277773556dc9a31a2e5da02e42f
+allocMinter2Tx gas=400000 gasUsed=148808 costETH=0.002678544 costUSD=0.702844588512 @ ETH/USD=262.398 gasPrice=18000000000 block=7 txId=0x26d5b8626b4b5acf0027e65cccc2c26e02e1cfcea9a4dc096dd9b818d58c1a5c
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.079336224000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.079336224000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.080342370000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.080342370000000000          11.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -159,14 +159,14 @@ allocMinter2Tx gas=400000 gasUsed=148808 costETH=0.002678544 costUSD=0.702844588
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                   211.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Allocate Minter - ac7 custid7 id7 100
 PASS Allocate Minter - ac8 custid8 id8 100
-tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
@@ -197,18 +197,18 @@ token.released=false
 token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
-ContributorAdded 0 #505 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
-ContributorAdded 1 #505 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
-Invested 0 #505 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-Invested 1 #505 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-Transfer 0 #505: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=100
-Transfer 1 #505: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=100
+ContributorAdded 0 #7 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
+ContributorAdded 1 #7 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
+Invested 0 #7 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
+Invested 1 #7 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
+Transfer 0 #7: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=100
+Transfer 1 #7: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=100
 
 Set Initial Block Timestamp
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.079336224000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.079336224000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       40.080342370000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.080342370000000000          11.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -223,12 +223,12 @@ Set Initial Block Timestamp
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                   211.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-tokenContractAddress=0xb3c7d39fdd2e7dcd02b660b1a317ae06c7c915cc
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
