@@ -12,8 +12,9 @@ Commits without the crowdsale code were
 [677175a](https://github.com/chronologic/chronologic/commit/677175a5d698bd6f524f59de4cca7f6c1526f32d),
 [c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2),
 [17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860),
-[6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417) and
-[817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6).
+[6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417),
+[817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6) and
+[25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83).
 
 <br />
 
@@ -63,6 +64,7 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
   * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `getOnSaleAddresses()` should be named something other than `get...` as it is not a getter and it 
   changes the state
+  * [x] Fixed in [25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83)
 
 TODO: Review below after removal of the crowdsale contracts.
 

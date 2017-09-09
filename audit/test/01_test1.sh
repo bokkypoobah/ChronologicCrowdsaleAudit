@@ -70,7 +70,7 @@ printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 `cp $CONTRACTSDIR/MintableToken.sol .`
 `cp $CONTRACTSDIR/UpgradeAgent.sol .`
 `cp $CONTRACTSDIR/UpgradeableToken.sol .`
-# `cp modifiedContracts/* .`
+`cp modifiedContracts/* .`
 
 # --- Modify dates ---
 #`perl -pi -e "s/address crowdsaleAddress;/address public crowdsaleAddress;/" $TOKENTEMPSOL`
@@ -117,7 +117,8 @@ var _minMintingPower = 5000000000000000000;
 var _maxMintingPower = 10000000000000000000;
 var _halvingCycle = 88;
 var _minBalanceToSell = 8888;
-var _DayInSecs = 84600;
+// ORIGINAL var _DayInSecs = 84600;
+var _DayInSecs = 10;
 var _teamLockPeriodInSec = 15780000;
 
 // function DayToken(string _name, string _symbol, uint _initialSupply, uint8 _decimals,
@@ -162,15 +163,18 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var setMintAgentMessage = "Set Mint Agent";
+var setMintAndReleaseAgentMessage = "Set Mint & Release Agent";
 // -----------------------------------------------------------------------------
-console.log("RESULT: " + setMintAgentMessage);
+console.log("RESULT: " + setMintAndReleaseAgentMessage);
 var setMintAgent1Tx = token.setMintAgent(contractOwnerAccount, true, {from: contractOwnerAccount, gas: 400000});
+var setReleaseAgent1Tx = token.setReleaseAgent(contractOwnerAccount, true, {from: contractOwnerAccount, gas: 400000});
 while (txpool.status.pending > 0) {
 }
 printTxData("setMintAgent1Tx", setMintAgent1Tx);
+printTxData("setReleaseAgent1Tx", setReleaseAgent1Tx);
 printBalances();
-failIfGasEqualsGasUsed(setMintAgent1Tx, setMintAgentMessage);
+failIfGasEqualsGasUsed(setMintAgent1Tx, setMintAndReleaseAgentMessage + " - Set Mint Agent");
+failIfGasEqualsGasUsed(setReleaseAgent1Tx, setMintAndReleaseAgentMessage + " - Set Release Agent");
 printTokenContractDetails();
 console.log("RESULT: ");
 
@@ -200,20 +204,60 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var setInitialBlockTimestampMessage = "Set Initial Block Timestamp";
+var releaseTokenMessage = "Release Token Which Sets The Initial Block Timestamp";
 // -----------------------------------------------------------------------------
-console.log("RESULT: " + setInitialBlockTimestampMessage);
-var setInitialBlockTimestampMessageTx = token.setInitialBlockTimestamp($STARTTIME, {from: contractOwnerAccount, gas: 400000});
+console.log("RESULT: " + releaseTokenMessage);
+var releaseTokenTx = token.releaseToken($STARTTIME, {from: contractOwnerAccount, gas: 400000});
 while (txpool.status.pending > 0) {
 }
-printTxData("setInitialBlockTimestampMessageTx", setInitialBlockTimestampMessageTx);
+printTxData("releaseTokenTx", releaseTokenTx);
 printBalances();
-failIfGasEqualsGasUsed(setInitialBlockTimestampMessageTx, setInitialBlockTimestampMessage);
+failIfGasEqualsGasUsed(releaseTokenTx, releaseTokenMessage);
 printTokenContractDetails();
 console.log("RESULT: ");
 
 
+// -----------------------------------------------------------------------------
+var transfersMessage = "Testing token transfers";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + transfersMessage);
+var transfers1Tx = token.transfer(account9, "1000000000000000000", {from: account7, gas: 100000});
+var transfers2Tx = token.approve(account10,  "2000000000000000000", {from: account8, gas: 100000});
+while (txpool.status.pending > 0) {
+}
+var transfers3Tx = token.transferFrom(account8, account11, "2000000000000000000", {from: account10, gas: 500000});
+while (txpool.status.pending > 0) {
+}
+printTxData("transfers1Tx", transfers1Tx);
+printTxData("transfers2Tx", transfers2Tx);
+printTxData("transfers3Tx", transfers3Tx);
+printBalances();
+failIfGasEqualsGasUsed(transfers1Tx, transfersMessage + " - transfer 1 token ac7 -> ac9");
+failIfGasEqualsGasUsed(transfers2Tx, transfersMessage + " - approve 2 tokens ac8 -> ac10");
+failIfGasEqualsGasUsed(transfers3Tx, transfersMessage + " - transferFrom 2 tokens ac8 -> ac11 by ac10");
+printTokenContractDetails();
+console.log("RESULT: ");
+
 exit;
+
+
+
+// -----------------------------------------------------------------------------
+var updateBalanceOf1Message = "Update Balance";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + allocMinter1Message);
+var updateBalanceOf1Tx = token.updateBalanceOf(1007, {from: contractOwnerAccount, gas: 400000});
+var updateBalanceOf2Tx = token.updateBalanceOf(1008, {from: contractOwnerAccount, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("updateBalanceOf1Tx", updateBalanceOf1Tx);
+printTxData("updateBalanceOf2Tx", updateBalanceOf2Tx);
+printBalances();
+failIfGasEqualsGasUsed(updateBalanceOf1Tx, updateBalanceOf1Message + " - ac7 custid7 id7 100");
+failIfGasEqualsGasUsed(updateBalanceOf2Tx, updateBalanceOf1Message + " - ac8 custid8 id8 100");
+printTokenContractDetails();
+console.log("RESULT: ");
+
 
 // -----------------------------------------------------------------------------
 var deployCrowdsaleMessage = "Deploy Crowdsale Contract";
