@@ -54,6 +54,58 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
 ## Recommendations
 
+* **MEDIUM IMPORTANCE** `listOnSaleAddresses()` could cost more gas that the block gas limit making it impossible for anyone to list all
+  the minting addresses on sale. Additionally, each user wanting to find out the list of minting addresses on sale will spend a non-significant
+  amount of ethers getting an up-to-date list.
+
+  Gas cost of 3 minting addresses, 1 of which is on sale
+
+      listOnSaleAddressesTx gas=4000000 gasUsed=1520331 costETH=0.027365958 costUSD=7.180772647284 @ ETH/USD=262.398 gasPrice=18000000000 block=910 txId=0x5c29b493f82559d5534074a3ccc11094c04baed6058b8aeb00575e7b45290064
+
+  Gas cost of 6 minting addresses, 1 of which is on sale
+
+      listOnSaleAddressesTx gas=4000000 gasUsed=1522227 costETH=0.027400086 costUSD=7.189727766228 @ ETH/USD=262.398 gasPrice=18000000000 block=994 txId=0x97126654d5f8710660af5874665174010830bfad0986c36e227f850fdc3061d5
+      Difference = 1896 for additional 3
+      For additional 3330 = 2104560
+      Estimated gas for all = 1520331+2104560=3624891
+
+  Gas cost of 6 minting addresses, 2 of which is on sale
+
+      listOnSaleAddressesTx gas=4000000 gasUsed=1524584 costETH=0.027442512 costUSD=7.200860263776 @ ETH/USD=262.398 gasPrice=18000000000 block=1081 txId=0xb01bb0d5e6d10e89a88ee98823335ff91c4d4afa84cb1e82247fdc9184baeb97
+      Each additional on sale = 2357
+      If +2000 minting addresses are on sale, then the additional gas is 2357 * 2000 = 4714000
+      Estimated gas for all = 6818560
+
+  Some suggestions to workaround this issue:
+
+  * Emit an event log message for each call to `sellMintingAddress(...)` with the following information: `_minPriceInDay` and
+    `_expiryBlockNumber`
+  * Emit an event log message for each call to `buyMintingAddress(...)` when a minting address is successfully sold
+  * Provide a *constant* function to list each minting address on sale, and this function call does not emit any events
+
+        function getOnSaleIds() constant public returns(uint[]) {
+            uint[] memory idsOnSale = new uint[](maxAddresses);
+            uint j = 0;
+            for(uint i=1; i <= maxAddresses; i++)
+            {
+                if (isValidContributorId(i)) {
+                    if(contributors[i].expiryBlockNumber!=0 && block.number <= contributors[i].expiryBlockNumber ){
+                        if(contributors[i].status == sellingStatus.ONSALE){
+                            idsOnSale[j] = i;
+                            j++;
+                        }
+                    }
+                }
+            }
+            return idsOnSale;
+        }
+
+    And the output will resemble:
+    
+    > idsOnSale=["1007","1008","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0", ...]
+
+  * Provide a *constant* function to list the sale status of the minting address specified in the function parameter
+
 * **LOW IMPORTANCE** - In *DayToken*, `isDayTokenActivated()` should be marked as a constant
   * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `isValidContributorId()` should be marked as a constant

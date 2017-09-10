@@ -626,19 +626,28 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * returns true if successful and false if not.
         * @param _to address of the user to which minting address is to be tranferred
         */
+    // BK Ok - Internal function, called by buyMintingAddress(...) 
     function transferMintingAddress(address _from, address _to) internal onlyContributor(idOf[_from]) returns (bool) {
+        // BK Ok
         require(isDayTokenActivated());
 
         // _to should be non minting address
+        // BK Ok
         require(!isValidContributorAddress(_to));
         
+        // BK Ok
         uint id = idOf[_from];
         // update balance of from address before transferring minting power
+        // BK Ok
         updateBalanceOf(id);
 
+        // BK Ok
         contributors[id].adr = _to;
+        // BK Ok
         idOf[_to] = id;
+        // BK Ok
         idOf[_from] = 0;
+        // BK Ok
         contributors[id].initialContributionDay = 0;
         // needed as id is assigned to new address
         contributors[id].lastUpdatedOn = getDayCount();
@@ -678,6 +687,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         require(isDayTokenActivated());
 
         // if Team address, check if lock-in period is over
+        // BK Ok
         require(isTeamLockInPeriodOverIfTeamAddress(msg.sender));
 
         uint id = idOf[msg.sender];

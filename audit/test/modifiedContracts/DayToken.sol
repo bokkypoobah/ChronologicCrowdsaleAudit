@@ -553,6 +553,23 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         }
     }
 
+    function getOnSaleIds() constant public returns(uint[]) {
+        uint[] memory idsOnSale = new uint[](maxAddresses);
+        uint j = 0;
+        for(uint i=1; i <= maxAddresses; i++)
+        {
+            if (isValidContributorId(i)) {
+                if(contributors[i].expiryBlockNumber!=0 && block.number <= contributors[i].expiryBlockNumber ){
+                    if(contributors[i].status == sellingStatus.ONSALE){
+                        idsOnSale[j] = i;
+                        j++;
+                    }
+                }
+            }
+        }
+        return idsOnSale;
+    }
+
     /** Function to be called by any user to buy a onsale address by offering an amount
         * @param _offerId ID number of the address to be bought by the buyer
         * @param _offerInDay Offer given by the buyer in number of DAY tokens

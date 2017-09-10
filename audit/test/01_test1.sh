@@ -107,13 +107,14 @@ var deployTokenMessage = "Deploy DayToken Contract";
 var _tokenName = "Day";
 var _tokenSymbol = "DAY";
 var _tokenDecimals = 18;
-var _tokenInitialSupply = 11000000000000000000;
+var _tokenInitialSupply = new BigNumber(11000).shift(18);
 var _tokenMintable = true;
 var _maxAddresses = 3333;
 var _firstTeamContributorId = 10;
 var _totalTeamContributorIds = 5;
 var _totalPostIcoContributorIds = 5;
-var _minMintingPower = 5000000000000000000;
+// ORIGNIAL var _minMintingPower = 5000000000000000000;
+var _minMintingPower = 10000000000000000000;
 var _maxMintingPower = 10000000000000000000;
 var _halvingCycle = 88;
 var _minBalanceToSell = 8888;
@@ -189,16 +190,28 @@ var allocMinter1Message = "Allocate Minter";
 // var _firstTeamContributorId = 10;
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + allocMinter1Message);
-var tokens = web3.toWei("100", "ether");
+var tokens = web3.toWei("10000", "ether");
 var allocMinter1Tx = token.allocateNormalTimeMints(account7, 7, 1007, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
 var allocMinter2Tx = token.allocateNormalTimeMints(account8, 8, 1008, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+var allocMinter3Tx = token.allocateNormalTimeMints(account9, 9, 1009, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+var allocMinter4Tx = token.allocateNormalTimeMints(account10, 10, 1010, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+var allocMinter5Tx = token.allocateNormalTimeMints(account11, 11, 1011, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
+var allocMinter6Tx = token.allocateNormalTimeMints(account12, 12, 1012, tokens, tokens, {from: contractOwnerAccount, gas: 400000});
 while (txpool.status.pending > 0) {
 }
 printTxData("allocMinter1Tx", allocMinter1Tx);
 printTxData("allocMinter2Tx", allocMinter2Tx);
+printTxData("allocMinter3Tx", allocMinter3Tx);
+printTxData("allocMinter4Tx", allocMinter4Tx);
+printTxData("allocMinter5Tx", allocMinter5Tx);
+printTxData("allocMinter6Tx", allocMinter6Tx);
 printBalances();
-failIfGasEqualsGasUsed(allocMinter1Tx, allocMinter1Message + " - ac7 custid7 id7 100");
-failIfGasEqualsGasUsed(allocMinter2Tx, allocMinter1Message + " - ac8 custid8 id8 100");
+failIfGasEqualsGasUsed(allocMinter1Tx, allocMinter1Message + " - ac7 custid7 id7 10000");
+failIfGasEqualsGasUsed(allocMinter2Tx, allocMinter1Message + " - ac8 custid8 id8 10000");
+failIfGasEqualsGasUsed(allocMinter3Tx, allocMinter1Message + " - ac9 custid9 id9 10000");
+failIfGasEqualsGasUsed(allocMinter4Tx, allocMinter1Message + " - ac10 custid10 id10 10000");
+failIfGasEqualsGasUsed(allocMinter5Tx, allocMinter1Message + " - ac11 custid11 id11 10000");
+failIfGasEqualsGasUsed(allocMinter6Tx, allocMinter1Message + " - ac12 custid12 id12 10000");
 printTokenContractDetails();
 console.log("RESULT: ");
 
@@ -217,26 +230,63 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
+if (false) {
 // -----------------------------------------------------------------------------
 var transfersMessage = "Testing token transfers";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + transfersMessage);
-var transfers1Tx = token.transfer(account9, "1000000000000000000", {from: account7, gas: 100000});
-var transfers2Tx = token.approve(account10,  "2000000000000000000", {from: account8, gas: 100000});
+var transfers1Tx = token.transfer(account10, "1000000000000000000", {from: account7, gas: 100000});
+var transfers2Tx = token.approve(account11,  "2000000000000000000", {from: account8, gas: 100000});
 while (txpool.status.pending > 0) {
 }
-var transfers3Tx = token.transferFrom(account8, account11, "2000000000000000000", {from: account10, gas: 500000});
+var transfers3Tx = token.transferFrom(account8, account12, "2000000000000000000", {from: account11, gas: 500000});
 while (txpool.status.pending > 0) {
 }
 printTxData("transfers1Tx", transfers1Tx);
 printTxData("transfers2Tx", transfers2Tx);
 printTxData("transfers3Tx", transfers3Tx);
 printBalances();
-failIfGasEqualsGasUsed(transfers1Tx, transfersMessage + " - transfer 1 token ac7 -> ac9");
-failIfGasEqualsGasUsed(transfers2Tx, transfersMessage + " - approve 2 tokens ac8 -> ac10");
-failIfGasEqualsGasUsed(transfers3Tx, transfersMessage + " - transferFrom 2 tokens ac8 -> ac11 by ac10");
+failIfGasEqualsGasUsed(transfers1Tx, transfersMessage + " - transfer 1 token ac7 -> ac10");
+failIfGasEqualsGasUsed(transfers2Tx, transfersMessage + " - approve 2 tokens ac8 -> ac11");
+failIfGasEqualsGasUsed(transfers3Tx, transfersMessage + " - transferFrom 2 tokens ac8 -> ac12 by ac11");
 printTokenContractDetails();
 console.log("RESULT: ");
+}
+
+
+// -----------------------------------------------------------------------------
+var sellMintingAddressMessage = "Sell Minting Address";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + sellMintingAddressMessage);
+var sellMintingAddress1Tx = token.sellMintingAddress(new BigNumber(10).shift(18), parseInt(eth.blockNumber) + 100, {from: account7, gas: 400000});
+var sellMintingAddress2Tx = token.sellMintingAddress(new BigNumber(10).shift(18), parseInt(eth.blockNumber) + 100, {from: account8, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("sellMintingAddress1Tx", sellMintingAddress1Tx);
+printTxData("sellMintingAddress2Tx", sellMintingAddress2Tx);
+printBalances();
+failIfGasEqualsGasUsed(sellMintingAddress1Tx, sellMintingAddressMessage + " - ac7");
+failIfGasEqualsGasUsed(sellMintingAddress2Tx, sellMintingAddressMessage + " - ac8");
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var listOnSaleAddressesMessage = "List On Sale Minting Addresses";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + listOnSaleAddressesMessage);
+var listOnSaleAddressesTx = token.listOnSaleAddresses({from: account7, gas: 4000000});
+while (txpool.status.pending > 0) {
+}
+printTxData("listOnSaleAddressesTx", listOnSaleAddressesTx);
+printBalances();
+failIfGasEqualsGasUsed(listOnSaleAddressesTx, listOnSaleAddressesMessage);
+printTokenContractDetails();
+console.log("RESULT: ");
+
+console.log("RESULT: idsOnSale=" + JSON.stringify(token.getOnSaleIds()));
+
+
 
 exit;
 

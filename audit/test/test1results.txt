@@ -1,6 +1,6 @@
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       15.000000000000000000           0.000000000000000000 Account #0 - Miner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       10.000000000000000000           0.000000000000000000 Account #0 - Miner
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
@@ -22,11 +22,11 @@
 
 
 Deploy DayToken Contract
-tokenAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7 gas=6000000 gasUsed=4115508 costETH=0.074079144 costUSD=19.438219227312 @ ETH/USD=262.398 gasPrice=18000000000 block=1088 txId=0x61d367eaea65c71e2adf20423b735ec77332835448db74770b5d1c4b817db5fd
+tokenAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 gas=6000000 gasUsed=4213228 costETH=0.075838104 costUSD=19.899766813392 @ ETH/USD=262.398 gasPrice=18000000000 block=4 txId=0xef77537f9f47da69b048699e130b0733944d814f32f2f5011e9135fcd8b54f82
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       25.074079144000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.074079144000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       20.075838104000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.075838104000000000       11000.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -41,18 +41,18 @@ tokenAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7 gas=6000000 gasUsed=4115
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                   11.000000000000000000 Total Token Balances
+                                                                                11000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy DayToken Contract
-tokenContractAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
 token.decimals=18
-token.totalSupply=11
+token.totalSupply=11000
 token.mintingFinished=false
 token.firstContributorId=1
 token.totalNormalContributorIds=3323
@@ -64,7 +64,7 @@ token.firstPostIcoContributorId=3329
 token.totalPostIcoContributorIds=5
 token.totalPostIcoContributorIdsAllocated=0
 token.maxAddresses=3333
-token.minMintingPower=5000000000000000000 0.5%
+token.minMintingPower=10000000000000000000 1%
 token.maxMintingPower=10000000000000000000 1%
 token.halvingCycle=88
 token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
@@ -81,12 +81,12 @@ token.totalUpgraded=0
 pricingContractAddress=null
 
 Set Mint & Release Agent
-setMintAgent1Tx gas=400000 gasUsed=45330 costETH=0.00081594 costUSD=0.21410102412 @ ETH/USD=262.398 gasPrice=18000000000 block=1090 txId=0x3ad400a13f65fcc64cbc4fa6efd1112b253ae963e1c24bdf9d8ef37c8fbb3b43
-setReleaseAgent1Tx gas=400000 gasUsed=43510 costETH=0.00078318 costUSD=0.20550486564 @ ETH/USD=262.398 gasPrice=18000000000 block=1090 txId=0x616e75bf2aa5cd3e063b466283dc4091568e5963b6051c0f4ccb2ee0b3f966aa
+setMintAgent1Tx gas=400000 gasUsed=45330 costETH=0.00081594 costUSD=0.21410102412 @ ETH/USD=262.398 gasPrice=18000000000 block=6 txId=0x36b18c3ee8a0695966852714a250fa0189aa2aba0305b062071e7c2832de0314
+setReleaseAgent1Tx gas=400000 gasUsed=43510 costETH=0.00078318 costUSD=0.20550486564 @ ETH/USD=262.398 gasPrice=18000000000 block=6 txId=0xdc710295415581554ab595b4da615d1c6978ce9e631d083d05ea79219e7c11a0
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.075678264000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.075678264000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       30.077437224000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.077437224000000000       11000.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
@@ -101,19 +101,19 @@ setReleaseAgent1Tx gas=400000 gasUsed=43510 costETH=0.00078318 costUSD=0.2055048
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                   11.000000000000000000 Total Token Balances
+                                                                                11000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Set Mint & Release Agent - Set Mint Agent
 PASS Set Mint & Release Agent - Set Release Agent
-tokenContractAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
 token.decimals=18
-token.totalSupply=11
+token.totalSupply=11000
 token.mintingFinished=false
 token.firstContributorId=1
 token.totalNormalContributorIds=3323
@@ -125,7 +125,7 @@ token.firstPostIcoContributorId=3329
 token.totalPostIcoContributorIds=5
 token.totalPostIcoContributorIdsAllocated=0
 token.maxAddresses=3333
-token.minMintingPower=5000000000000000000 0.5%
+token.minMintingPower=10000000000000000000 1%
 token.maxMintingPower=10000000000000000000 1%
 token.halvingCycle=88
 token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
@@ -141,43 +141,51 @@ token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
 
 Allocate Minter
-allocMinter1Tx gas=400000 gasUsed=169005 costETH=0.00304209 costUSD=0.79823833182 @ ETH/USD=262.398 gasPrice=18000000000 block=1093 txId=0xc6fd9ec0e4c48533249f5dc1e656055b2fa1de7566a03f35f046c9a47faa634b
-allocMinter2Tx gas=400000 gasUsed=154005 costETH=0.00277209 costUSD=0.72739087182 @ ETH/USD=262.398 gasPrice=18000000000 block=1093 txId=0xd419852d777310d647e11d24a0bae46cc6e5bdbff61777c3436336f82d83ab30
+allocMinter1Tx gas=400000 gasUsed=169133 costETH=0.003044394 costUSD=0.798842896812 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0x2734795580836536e0a22fd6f80463d82dd3faeffd8d9e2fe3de395c4a766520
+allocMinter2Tx gas=400000 gasUsed=154133 costETH=0.002774394 costUSD=0.727995436812 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0xff94b794e7c5d327924b01dc02e38c93fd49b4f821bc0c0c67097e375cfe3602
+allocMinter3Tx gas=400000 gasUsed=154069 costETH=0.002773242 costUSD=0.727693154316 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0xf5c19892043f03a35a39b3c9aa803fa4a6a3263ee2f7a2b94421b5e2bf37bbd7
+allocMinter4Tx gas=400000 gasUsed=154133 costETH=0.002774394 costUSD=0.727995436812 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0xf0e8df25cde05bde887ef748bdbeb3061fd3a0cffd27711888887d6e5242f388
+allocMinter5Tx gas=400000 gasUsed=154133 costETH=0.002774394 costUSD=0.727995436812 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0xe6d84c03b0609a73097335c9be4f0c2600ba114675d0495a0a5cd1da2333d457
+allocMinter6Tx gas=400000 gasUsed=154133 costETH=0.002774394 costUSD=0.727995436812 @ ETH/USD=262.398 gasPrice=18000000000 block=8 txId=0x16a62c9eab0b24186776c96d8290d68eadaccb21068b2277e48089c5c696a524
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       50.081492444000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.081492444000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       40.094352436000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.094352436000000000       11000.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Test Address #1
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6 - Test Address #2
- 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000         100.000000000000000000 Account #7
- 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000         100.000000000000000000 Account #8
- 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
-10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #A
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #B
-12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #C
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000       10000.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000       10000.000000000000000000 Account #8
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000       10000.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000       10000.000000000000000000 Account #A
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000       10000.000000000000000000 Account #B
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000       10000.000000000000000000 Account #C
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                  211.000000000000000000 Total Token Balances
+                                                                                71000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-PASS Allocate Minter - ac7 custid7 id7 100
-PASS Allocate Minter - ac8 custid8 id8 100
-tokenContractAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+PASS Allocate Minter - ac7 custid7 id7 10000
+PASS Allocate Minter - ac8 custid8 id8 10000
+PASS Allocate Minter - ac9 custid9 id9 10000
+PASS Allocate Minter - ac10 custid10 id10 10000
+PASS Allocate Minter - ac11 custid11 id11 10000
+PASS Allocate Minter - ac12 custid12 id12 10000
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
 token.decimals=18
-token.totalSupply=211
+token.totalSupply=71000
 token.mintingFinished=false
 token.firstContributorId=1
 token.totalNormalContributorIds=3323
-token.totalNormalContributorIdsAllocated=2
+token.totalNormalContributorIdsAllocated=6
 token.firstTeamContributorId=10
 token.totalTeamContributorIds=5
 token.totalTeamContributorIdsAllocated=0
@@ -185,7 +193,7 @@ token.firstPostIcoContributorId=3329
 token.totalPostIcoContributorIds=5
 token.totalPostIcoContributorIdsAllocated=0
 token.maxAddresses=3333
-token.minMintingPower=5000000000000000000 0.5%
+token.minMintingPower=10000000000000000000 1%
 token.maxMintingPower=10000000000000000000 1%
 token.halvingCycle=88
 token.initialBlockTimestamp=1577836800 Wed, 01 Jan 2020 00:00:00 UTC
@@ -199,49 +207,61 @@ token.released=false
 token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
-ContributorAdded 0 #1093 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
-ContributorAdded 1 #1093 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
-Invested 0 #1093 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-Invested 1 #1093 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"100000000000000000000","weiAmount":"100000000000000000000"}
-Transfer 0 #1093: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=100
-Transfer 1 #1093: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=100
+ContributorAdded 0 #8 {"adr":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","id":"1007"}
+ContributorAdded 1 #8 {"adr":"0xa88a05d2b88283ce84c8325760b72a64591279a2","id":"1008"}
+ContributorAdded 2 #8 {"adr":"0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","id":"1009"}
+ContributorAdded 3 #8 {"adr":"0xaaaa9de1e6c564446ebca0fd102d8bd92093c756","id":"1010"}
+ContributorAdded 4 #8 {"adr":"0xabba43e7594e3b76afb157989e93c6621497fd4b","id":"1011"}
+ContributorAdded 5 #8 {"adr":"0xacca534c9f62ab495bd986e002ddf0f054caae4f","id":"1012"}
+Invested 0 #8 {"contributorId":"1007","customerId":"7","receiver":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Invested 1 #8 {"contributorId":"1008","customerId":"8","receiver":"0xa88a05d2b88283ce84c8325760b72a64591279a2","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Invested 2 #8 {"contributorId":"1009","customerId":"9","receiver":"0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Invested 3 #8 {"contributorId":"1010","customerId":"10","receiver":"0xaaaa9de1e6c564446ebca0fd102d8bd92093c756","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Invested 4 #8 {"contributorId":"1011","customerId":"11","receiver":"0xabba43e7594e3b76afb157989e93c6621497fd4b","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Invested 5 #8 {"contributorId":"1012","customerId":"12","receiver":"0xacca534c9f62ab495bd986e002ddf0f054caae4f","tokenAmount":"1e+22","weiAmount":"1e+22"}
+Transfer 0 #8: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=10000
+Transfer 1 #8: _from=0x0000000000000000000000000000000000000000 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=10000
+Transfer 2 #8: _from=0x0000000000000000000000000000000000000000 _to=0xa99a0ae3354c06b1459fd441a32a3f71005d7da0 _value=10000
+Transfer 3 #8: _from=0x0000000000000000000000000000000000000000 _to=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=10000
+Transfer 4 #8: _from=0x0000000000000000000000000000000000000000 _to=0xabba43e7594e3b76afb157989e93c6621497fd4b _value=10000
+Transfer 5 #8: _from=0x0000000000000000000000000000000000000000 _to=0xacca534c9f62ab495bd986e002ddf0f054caae4f _value=10000
 
 Release Token Which Sets The Initial Block Timestamp
-releaseTokenTx gas=400000 gasUsed=74229 costETH=0.001336122 costUSD=0.350595740556 @ ETH/USD=262.398 gasPrice=18000000000 block=1096 txId=0x55c43ca32849e5d8088c82a4fecf70430f567c7f88b2f7dece3778735bd7808f
+releaseTokenTx gas=400000 gasUsed=74229 costETH=0.001336122 costUSD=0.350595740556 @ ETH/USD=262.398 gasPrice=18000000000 block=12 txId=0xe2fc3b72137d9e9f231d01f4f961e99bf0ee330cc9096f4ec8eff3732c556468
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.082828566000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.082828566000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.095688558000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.095688558000000000       11000.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Test Address #1
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6 - Test Address #2
- 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000         101.705287914385442051 Account #7
- 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000         101.704985246424500171 Account #8
- 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
-10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #A
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #B
-12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #C
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000       10000.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000       10000.000000000000000000 Account #8
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000       10000.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000       10000.000000000000000000 Account #A
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000       10000.000000000000000000 Account #B
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000       10000.000000000000000000 Account #C
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                  214.410273160809942222 Total Token Balances
+                                                                                71000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Release Token Which Sets The Initial Block Timestamp
-tokenContractAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
 token.decimals=18
-token.totalSupply=211
+token.totalSupply=71000
 token.mintingFinished=true
 token.firstContributorId=1
 token.totalNormalContributorIds=3323
-token.totalNormalContributorIdsAllocated=2
+token.totalNormalContributorIdsAllocated=6
 token.firstTeamContributorId=10
 token.totalTeamContributorIds=5
 token.totalTeamContributorIdsAllocated=0
@@ -249,10 +269,10 @@ token.firstPostIcoContributorId=3329
 token.totalPostIcoContributorIds=5
 token.totalPostIcoContributorIdsAllocated=0
 token.maxAddresses=3333
-token.minMintingPower=5000000000000000000 0.5%
+token.minMintingPower=10000000000000000000 1%
 token.maxMintingPower=10000000000000000000 1%
 token.halvingCycle=88
-token.initialBlockTimestamp=1504978573 Sat, 09 Sep 2017 17:36:13 UTC
+token.initialBlockTimestamp=1505067750 Sun, 10 Sep 2017 18:22:30 UTC
 token.isInitialBlockTimestampSet=true
 token.mintingDec=19
 token.minBalanceToSell=8888
@@ -264,46 +284,44 @@ token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
 
-Testing token transfers
-transfers1Tx gas=100000 gasUsed=94582 costETH=0.001702476 costUSD=0.446726297448 @ ETH/USD=262.398 gasPrice=18000000000 block=1098 txId=0x3c32a12dcfbf00c75aa1f1b21d3c837ce4bb9cb1e089d0eb55f92840a333c931
-transfers2Tx gas=100000 gasUsed=45830 costETH=0.00082494 costUSD=0.21646260612 @ ETH/USD=262.398 gasPrice=18000000000 block=1098 txId=0x36c632408c14f8a2a089a70ef7a4ca54bb4fbfc67764c3b854d2a9dc22956842
-transfers3Tx gas=500000 gasUsed=85802 costETH=0.001544436 costUSD=0.405256917528 @ ETH/USD=262.398 gasPrice=18000000000 block=1100 txId=0x5c40e061c4a549d01b3e88274604be6476294168f108a869abcc732c20fae6e9
+Sell Minting Address
+sellMintingAddress1Tx gas=400000 gasUsed=400000 costETH=0.0072 costUSD=1.8892656 @ ETH/USD=262.398 gasPrice=18000000000 block=15 txId=0x0aec780bc1d0b0481b942bb0d3a0ea1f844d7ddced79ca4266f7d7ff0d064fb5
+sellMintingAddress2Tx gas=400000 gasUsed=400000 costETH=0.0072 costUSD=1.8892656 @ ETH/USD=262.398 gasPrice=18000000000 block=15 txId=0x214f602d77a3c97954681881443200c50d61e70010b4c3dc2c6340c5edde83b4
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.086900418000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.082828566000000000          11.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.110088558000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.095688558000000000       11000.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Test Address #1
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6 - Test Address #2
- 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec       -0.001702476000000000         102.431165501321911225 Account #7
- 8 0xa88a05d2b88283ce84c8325760b72a64591279a2       -0.000824940000000000         101.439040239754252478 Account #8
- 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           1.000000000000000000 Account #9
-10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756       -0.001544436000000000           0.000000000000000000 Account #A
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           2.000000000000000000 Account #B
-12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #C
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec       -0.007200000000000000       10000.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2       -0.007200000000000000       10000.000000000000000000 Account #8
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000       10000.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000       10000.000000000000000000 Account #A
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000       10000.000000000000000000 Account #B
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000       10000.000000000000000000 Account #C
 13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
 14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
 15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
-16 0x171367f4d427567dab0dc38133c5dc3aad7001a7        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                                  217.870205741076163703 Total Token Balances
+                                                                                71000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-PASS Testing token transfers - transfer 1 token ac7 -> ac9
-PASS Testing token transfers - approve 2 tokens ac8 -> ac10
-PASS Testing token transfers - transferFrom 2 tokens ac8 -> ac11 by ac10
-tokenContractAddress=0x171367f4d427567dab0dc38133c5dc3aad7001a7
+FAIL Sell Minting Address - ac7
+FAIL Sell Minting Address - ac8
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.symbol=DAY
 token.name=Day
 token.decimals=18
-token.totalSupply=217.00784633994340526
+token.totalSupply=71000
 token.mintingFinished=true
 token.firstContributorId=1
 token.totalNormalContributorIds=3323
-token.totalNormalContributorIdsAllocated=2
+token.totalNormalContributorIdsAllocated=6
 token.firstTeamContributorId=10
 token.totalTeamContributorIds=5
 token.totalTeamContributorIdsAllocated=0
@@ -311,10 +329,10 @@ token.firstPostIcoContributorId=3329
 token.totalPostIcoContributorIds=5
 token.totalPostIcoContributorIdsAllocated=0
 token.maxAddresses=3333
-token.minMintingPower=5000000000000000000 0.5%
+token.minMintingPower=10000000000000000000 1%
 token.maxMintingPower=10000000000000000000 1%
 token.halvingCycle=88
-token.initialBlockTimestamp=1504978573 Sat, 09 Sep 2017 17:36:13 UTC
+token.initialBlockTimestamp=1505067750 Sun, 10 Sep 2017 18:22:30 UTC
 token.isInitialBlockTimestampSet=true
 token.mintingDec=19
 token.minBalanceToSell=8888
@@ -325,7 +343,63 @@ token.released=true
 token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.upgradeAgent=0x0000000000000000000000000000000000000000
 token.totalUpgraded=0
-Approval 0 #1098 _owner=0xa88a05d2b88283ce84c8325760b72a64591279a2 spender=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=2
-Transfer 0 #1098: _from=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _to=0xa99a0ae3354c06b1459fd441a32a3f71005d7da0 _value=1
-Transfer 1 #1100: _from=0xa88a05d2b88283ce84c8325760b72a64591279a2 _to=0xabba43e7594e3b76afb157989e93c6621497fd4b _value=2
 
+List On Sale Minting Addresses
+listOnSaleAddressesTx gas=4000000 gasUsed=1519858 costETH=0.027357444 costUSD=7.178538590712 @ ETH/USD=262.398 gasPrice=18000000000 block=19 txId=0x142ee57241cb9ffd0b555b504c3f94a13b284d60562973b89a6c5fdce3e982fb
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       95.137446002000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.095688558000000000       11000.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Team #1
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Team #2
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Team #3
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Test Address #1
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6 - Test Address #2
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec       -0.034557444000000000       10000.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2       -0.007200000000000000       10000.000000000000000000 Account #8
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000       10000.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000       10000.000000000000000000 Account #A
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000       10000.000000000000000000 Account #B
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000       10000.000000000000000000 Account #C
+13 0xadda9b762a00ff12711113bfdc36958b73d7f915        0.000000000000000000           0.000000000000000000 Account #D
+14 0xaeea63b5479b50f79583ec49dacdcf86ddeff392        0.000000000000000000           0.000000000000000000 Account #E
+15 0xaffa4d3a80add8ce4018540e056dacb649589394        0.000000000000000000           0.000000000000000000 Account #E
+16 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Token 'DAY' 'Day'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                71000.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS List On Sale Minting Addresses
+tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.symbol=DAY
+token.name=Day
+token.decimals=18
+token.totalSupply=71000
+token.mintingFinished=true
+token.firstContributorId=1
+token.totalNormalContributorIds=3323
+token.totalNormalContributorIdsAllocated=6
+token.firstTeamContributorId=10
+token.totalTeamContributorIds=5
+token.totalTeamContributorIdsAllocated=0
+token.firstPostIcoContributorId=3329
+token.totalPostIcoContributorIds=5
+token.totalPostIcoContributorIdsAllocated=0
+token.maxAddresses=3333
+token.minMintingPower=10000000000000000000 1%
+token.maxMintingPower=10000000000000000000 1%
+token.halvingCycle=88
+token.initialBlockTimestamp=1505067750 Sun, 10 Sep 2017 18:22:30 UTC
+token.isInitialBlockTimestampSet=true
+token.mintingDec=19
+token.minBalanceToSell=8888
+token.teamLockPeriodInSec=15780000
+token.DayInSecs=10
+token.releaseAgent=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.released=true
+token.upgradeMaster=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.upgradeAgent=0x0000000000000000000000000000000000000000
+token.totalUpgraded=0
+
+idsOnSale=["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]
