@@ -70,7 +70,7 @@ printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 `cp $CONTRACTSDIR/MintableToken.sol .`
 `cp $CONTRACTSDIR/UpgradeAgent.sol .`
 `cp $CONTRACTSDIR/UpgradeableToken.sol .`
-`cp modifiedContracts/* .`
+#`cp modifiedContracts/* .`
 
 # --- Modify dates ---
 #`perl -pi -e "s/address crowdsaleAddress;/address public crowdsaleAddress;/" $TOKENTEMPSOL`
@@ -113,7 +113,7 @@ var _maxAddresses = 3333;
 var _firstTeamContributorId = 10;
 var _totalTeamContributorIds = 5;
 var _totalPostIcoContributorIds = 5;
-// ORIGNIAL var _minMintingPower = 5000000000000000000;
+// ORIGINAL var _minMintingPower = 5000000000000000000;
 var _minMintingPower = 10000000000000000000;
 var _maxMintingPower = 10000000000000000000;
 var _halvingCycle = 88;
@@ -230,36 +230,12 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
-if (false) {
-// -----------------------------------------------------------------------------
-var transfersMessage = "Testing token transfers";
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + transfersMessage);
-var transfers1Tx = token.transfer(account10, "1000000000000000000", {from: account7, gas: 100000});
-var transfers2Tx = token.approve(account11,  "2000000000000000000", {from: account8, gas: 100000});
-while (txpool.status.pending > 0) {
-}
-var transfers3Tx = token.transferFrom(account8, account12, "2000000000000000000", {from: account11, gas: 500000});
-while (txpool.status.pending > 0) {
-}
-printTxData("transfers1Tx", transfers1Tx);
-printTxData("transfers2Tx", transfers2Tx);
-printTxData("transfers3Tx", transfers3Tx);
-printBalances();
-failIfGasEqualsGasUsed(transfers1Tx, transfersMessage + " - transfer 1 token ac7 -> ac10");
-failIfGasEqualsGasUsed(transfers2Tx, transfersMessage + " - approve 2 tokens ac8 -> ac11");
-failIfGasEqualsGasUsed(transfers3Tx, transfersMessage + " - transferFrom 2 tokens ac8 -> ac12 by ac11");
-printTokenContractDetails();
-console.log("RESULT: ");
-}
-
-
 // -----------------------------------------------------------------------------
 var sellMintingAddressMessage = "Sell Minting Address";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + sellMintingAddressMessage);
-var sellMintingAddress1Tx = token.sellMintingAddress(new BigNumber(10).shift(18), parseInt(eth.blockNumber) + 100, {from: account7, gas: 400000});
-var sellMintingAddress2Tx = token.sellMintingAddress(new BigNumber(10).shift(18), parseInt(eth.blockNumber) + 100, {from: account8, gas: 400000});
+var sellMintingAddress1Tx = token.sellMintingAddress(new BigNumber(10.111111111).shift(18), parseInt(eth.blockNumber) + 100, {from: account7, gas: 400000});
+var sellMintingAddress2Tx = token.sellMintingAddress(new BigNumber(10.111111111).shift(18), parseInt(eth.blockNumber) + 100, {from: account8, gas: 400000});
 while (txpool.status.pending > 0) {
 }
 printTxData("sellMintingAddress1Tx", sellMintingAddress1Tx);
@@ -272,24 +248,95 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var listOnSaleAddressesMessage = "List On Sale Minting Addresses";
+var listOnSaleAddressesMessage = "List On Sale Minting Addresses - Before Purchase";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + listOnSaleAddressesMessage);
-var listOnSaleAddressesTx = token.listOnSaleAddresses({from: account7, gas: 4000000});
+var onSaleIds = token.getOnSaleIds();
+onSaleIds.forEach(function(e) {
+  if (e != 0) {
+    console.log("RESULT:   " + e + " status=" + token.getSellingStatus(e) + " contributors(e)=" + token.contributors(e));
+  }
+});
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var buyMintingAddressMessage = "Buy Minting Address";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + buyMintingAddressMessage);
+var buyMintingAddress1Tx = token.buyMintingAddress(1008, new BigNumber(20.444444444).shift(18), {from: contractOwnerAccount, gas: 400000});
 while (txpool.status.pending > 0) {
 }
-printTxData("listOnSaleAddressesTx", listOnSaleAddressesTx);
+printTxData("buyMintingAddress1Tx", buyMintingAddress1Tx);
 printBalances();
-failIfGasEqualsGasUsed(listOnSaleAddressesTx, listOnSaleAddressesMessage);
+failIfGasEqualsGasUsed(buyMintingAddress1Tx, buyMintingAddressMessage + " - ac1 buys");
 printTokenContractDetails();
 console.log("RESULT: ");
 
-console.log("RESULT: idsOnSale=" + JSON.stringify(token.getOnSaleIds()));
 
+// -----------------------------------------------------------------------------
+var listOnSaleAddressesMessage = "List On Sale Minting Addresses - After Purchase";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + listOnSaleAddressesMessage);
+var onSaleIds = token.getOnSaleIds();
+onSaleIds.forEach(function(e) {
+  if (e != 0) {
+    console.log("RESULT:   " + e + " status=" + token.getSellingStatus(e) + " contributors(e)=" + token.contributors(e));
+  }
+});
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var fetchSuccessfulSaleProceedMessage = "Fetch Successful Sale Proceed";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + fetchSuccessfulSaleProceedMessage);
+var fetchSuccessfulSaleProceedTx = token.fetchSuccessfulSaleProceed({from: account8, gas: 400000});
+while (txpool.status.pending > 0) {
+}
+printTxData("fetchSuccessfulSaleProceedTx", fetchSuccessfulSaleProceedTx);
+printBalances();
+failIfGasEqualsGasUsed(fetchSuccessfulSaleProceedTx, fetchSuccessfulSaleProceedMessage + " - account8");
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var listOnSaleAddressesMessage = "List On Sale Minting Addresses - After Fetching Successful Sale Proceed";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + listOnSaleAddressesMessage);
+var onSaleIds = token.getOnSaleIds();
+onSaleIds.forEach(function(e) {
+  if (e != 0) {
+    console.log("RESULT:   " + e + " status=" + token.getSellingStatus(e) + " contributors(e)=" + token.contributors(e));
+  }
+});
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var transfersMessage = "Testing token transfers";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + transfersMessage);
+var transfers1Tx = token.transfer(account13, "1000000000000000000", {from: account7, gas: 100000});
+var transfers2Tx = token.approve(account14,  "2000000000000000000", {from: account8, gas: 100000});
+while (txpool.status.pending > 0) {
+}
+var transfers3Tx = token.transferFrom(account8, account15, "2000000000000000000", {from: account14, gas: 500000});
+while (txpool.status.pending > 0) {
+}
+printTxData("transfers1Tx", transfers1Tx);
+printTxData("transfers2Tx", transfers2Tx);
+printTxData("transfers3Tx", transfers3Tx);
+printBalances();
+failIfGasEqualsGasUsed(transfers1Tx, transfersMessage + " - transfer 1 token ac7 -> ac13");
+failIfGasEqualsGasUsed(transfers2Tx, transfersMessage + " - approve 2 tokens ac8 -> ac14");
+failIfGasEqualsGasUsed(transfers3Tx, transfersMessage + " - transferFrom 2 tokens ac8 -> ac15 by ac14");
+printTokenContractDetails();
+console.log("RESULT: ");
 
 
 exit;
-
 
 
 // -----------------------------------------------------------------------------

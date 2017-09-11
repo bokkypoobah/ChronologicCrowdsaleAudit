@@ -140,7 +140,8 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     event UpdatedTokenInformation(string newName, string newSymbol); 
     event MintingAdrTransferred(address from, address to);
     event ContributorAdded(address adr, uint id);
-    event OnSale(uint id, address adr, uint minPriceInDay, uint expiryBlockNumber);
+    event TimeMintOnSale(uint id, address seller, uint minPriceInDay, uint expiryBlockNumber);
+    event TimeMintSold(uint id, address buyer, uint offerInDay);
     event PostInvested(address investor, uint weiAmount, uint tokenAmount, uint customerId, uint contributorId);
     
     // BK Ok
@@ -392,6 +393,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         if (isDayTokenActivated())
             // BK Ok
             daySinceMintingEpoch = (block.timestamp - initialBlockTimestamp)/DayInSecs; 
+
         // BK Ok
         return daySinceMintingEpoch; 
     }
@@ -534,7 +536,6 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         return balances[adr]; 
     }
 
-
     /**
         * Returns totalSupply of DAY tokens.
         */
@@ -564,14 +565,14 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         // Check sender account has enough balance and transfer amount is non zero
         // BK Ok
         require ( balanceOf(msg.sender) >= _value && _value != 0 ); 
-         
+        
         // BK Ok
         updateBalanceOf(idOf[_to]);
 
         // BK Ok
-        balances[msg.sender] = safeSub(balances[msg.sender], _value);
+        balances[msg.sender] = safeSub(balances[msg.sender], _value); 
         // BK Ok 
-        balances[_to] = safeAdd(balances[_to], _value);
+        balances[_to] = safeAdd(balances[_to], _value); 
         // BK Ok 
         Transfer(msg.sender, _to, _value);
 
@@ -620,43 +621,6 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         return true;
     }
 
-    /**
-        * Transfer minting address from one user to another
-        * Gives the transfer-to address, the id of the original address
-        * returns true if successful and false if not.
-        * @param _to address of the user to which minting address is to be tranferred
-        */
-    // BK Ok - Internal function, called by buyMintingAddress(...) 
-    function transferMintingAddress(address _from, address _to) internal onlyContributor(idOf[_from]) returns (bool) {
-        // BK Ok
-        require(isDayTokenActivated());
-
-        // _to should be non minting address
-        // BK Ok
-        require(!isValidContributorAddress(_to));
-        
-        // BK Ok
-        uint id = idOf[_from];
-        // update balance of from address before transferring minting power
-        // BK Ok
-        updateBalanceOf(id);
-
-        // BK Ok
-        contributors[id].adr = _to;
-        // BK Ok
-        idOf[_to] = id;
-        // BK Ok
-        idOf[_from] = 0;
-        // BK Ok
-        contributors[id].initialContributionDay = 0;
-        // needed as id is assigned to new address
-        contributors[id].lastUpdatedOn = getDayCount();
-        contributors[id].expiryBlockNumber = 0;
-        contributors[id].minPriceInDay = 0;
-        contributors[id].status = sellingStatus.NOTONSALE;
-        MintingAdrTransferred(_from, _to);
-        return true;
-    }
 
     /** 
         * Add any contributor structure (For every kind of contributors: Team/Pre-ICO/ICO/Test)
@@ -685,6 +649,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         */
     function sellMintingAddress(uint256 _minPriceInDay, uint _expiryBlockNumber) public returns (bool) {
         require(isDayTokenActivated());
+        require(_expiryBlockNumber > block.number);
 
         // if Team address, check if lock-in period is over
         // BK Ok
@@ -701,23 +666,42 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         contributors[id].status = sellingStatus.ONSALE;
         balances[msg.sender] = safeSub(balances[msg.sender], minBalanceToSell);
         balances[this] = safeAdd(balances[this], minBalanceToSell);
+        TimeMintOnSale(id, msg.sender, contributors[id].minPriceInDay, contributors[id].expiryBlockNumber);
         return true;
     }
 
-    /** Function to be called by any user to get a list of all on sale addresses
+
+    /** Function to be called by any user to get a list of all On Sale TimeMints
         */
-    function listOnSaleAddresses() public {
-        for(uint i=1; i <= maxAddresses; i++)
-        {
-            if (isValidContributorId(i)) {
-                if(contributors[i].expiryBlockNumber!=0 && block.number > contributors[i].expiryBlockNumber ){
-                    contributors[i].status = sellingStatus.EXPIRED;
-                }
-                if(contributors[i].status == sellingStatus.ONSALE){
-                    OnSale(i, contributors[i].adr, contributors[i].minPriceInDay, contributors[i].expiryBlockNumber);
-                }
+    function getOnSaleIds() constant public returns(uint[]) {
+        uint[] memory idsOnSale = new uint[](maxAddresses);
+        uint j = 0;
+        for(uint i=1; i <= maxAddresses; i++) {
+
+            if ( isValidContributorId(i) &&
+                block.number <= contributors[i].expiryBlockNumber && 
+                contributors[i].status == sellingStatus.ONSALE ) {
+                    idsOnSale[j] = i;
+                    j++;     
             }
+            
         }
+        return idsOnSale;
+    }
+
+
+    /** Function to be called by any user to get status of a Time Mint.
+        * returns status 0 - Not on sale, 1 - Expired, 2 - On sale,
+        * @param _id ID number of the Time Mint 
+        */
+    function getSellingStatus(uint _id) constant public returns(sellingStatus status) {
+        require(isValidContributorId(_id));
+        status = contributors[_id].status;
+        if ( block.number > contributors[_id].expiryBlockNumber && 
+                status == sellingStatus.ONSALE )
+            status = sellingStatus.EXPIRED;
+
+        return status;
     }
 
     /** Function to be called by any user to buy a onsale address by offering an amount
@@ -725,7 +709,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _offerInDay Offer given by the buyer in number of DAY tokens
         */
     function buyMintingAddress(uint _offerId, uint256 _offerInDay) public returns(bool){
-        if(contributors[_offerId].status != sellingStatus.NOTONSALE 
+        if (contributors[_offerId].status == sellingStatus.ONSALE 
             && block.number > contributors[_offerId].expiryBlockNumber)
         {
             contributors[_offerId].status = sellingStatus.EXPIRED;
@@ -741,9 +725,41 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
             //mark the offer as sold & let seller pull the proceed to their own account.
             sellingPriceInDayOf[soldAddress] = _offerInDay;
             soldAddresses[soldAddress] = true; 
+            TimeMintSold(_offerId, msg.sender, _offerInDay);  
         }
         return true;
     }
+
+
+    /**
+        * Transfer minting address from one user to another
+        * Gives the transfer-to address, the id of the original address
+        * returns true if successful and false if not.
+        * @param _to address of the user to which minting address is to be tranferred
+        */
+    function transferMintingAddress(address _from, address _to) internal onlyContributor(idOf[_from]) returns (bool) {
+        require(isDayTokenActivated());
+
+        // _to should be non minting address
+        require(!isValidContributorAddress(_to));
+        
+        uint id = idOf[_from];
+        // update balance of from address before transferring minting power
+        updateBalanceOf(id);
+
+        contributors[id].adr = _to;
+        idOf[_to] = id;
+        idOf[_from] = 0;
+        contributors[id].initialContributionDay = 0;
+        // needed as id is assigned to new address
+        contributors[id].lastUpdatedOn = getDayCount();
+        contributors[id].expiryBlockNumber = 0;
+        contributors[id].minPriceInDay = 0;
+        contributors[id].status = sellingStatus.NOTONSALE;
+        MintingAdrTransferred(_from, _to);
+        return true;
+    }
+
 
     /** Function to allow seller to get back their deposited amount of day tokens(minBalanceToSell) and 
         * offer made by buyer after successful sale.

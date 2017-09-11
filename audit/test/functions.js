@@ -22,7 +22,7 @@ addAccount(eth.accounts[11], "Account #B");
 addAccount(eth.accounts[12], "Account #C");
 addAccount(eth.accounts[13], "Account #D");
 addAccount(eth.accounts[14], "Account #E");
-addAccount(eth.accounts[15], "Account #E");
+addAccount(eth.accounts[15], "Account #F");
 
 
 var minerAccount = eth.accounts[0];
@@ -341,12 +341,19 @@ function printTokenContractDetails() {
     });
     contributorAddedEvents.stopWatching();
 
-    var onSaleEvents = contract.OnSale({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var timeMintOnSaleEvents = contract.TimeMintOnSale({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
-    onSaleEvents.watch(function (error, result) {
-      console.log("RESULT: OnSale " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    timeMintOnSaleEvents.watch(function (error, result) {
+      console.log("RESULT: TimeMintOnSale " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    onSaleEvents.stopWatching();
+    timeMintOnSaleEvents.stopWatching();
+
+    var timeMintSoldEvents = contract.TimeMintSold({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    timeMintSoldEvents.watch(function (error, result) {
+      console.log("RESULT: TimeMintSold " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    timeMintSoldEvents.stopWatching();
 
     var postInvestedEvents = contract.PostInvested({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;

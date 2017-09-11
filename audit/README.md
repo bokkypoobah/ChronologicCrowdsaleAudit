@@ -13,8 +13,9 @@ Commits without the crowdsale code were
 [c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2),
 [17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860),
 [6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417),
-[817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6) and
-[25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83).
+[817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6),
+[25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83) and
+[54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63).
 
 <br />
 
@@ -45,6 +46,8 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 * [Summary](#summary)
 * [Table Of Contents](#table-of-contents)
 * [Recommendations](#recommendations)
+  * [Recommendations For The Token Contract Only](#recommendations-for-the-token-contract-only)
+  * [Recommendations For The Crowdsale And Token Contracts](#recommendations-for-the-crowdsale-and-token-contracts)
 * [Testing](#testing)
 * [Code Review](#code-review)
 
@@ -54,6 +57,15 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
 ## Recommendations
 
+### Recommendations For The Token Contract Only
+
+These are the recommendations for the token contracts after the removal of the crowdsale contracts.
+
+* **LOW IMPORTANCE** Add a `Transfer({source}, {destination}, {amount});` event log in `sellMintingAddress(...)`, `buyMintingAddress(...)`,
+  `fetchSuccessfulSaleProceed()` and `refundFailedAuctionAmount()` - any where tokens are transferred
+* **LOW IMPORTANCE** Add the `id` to the event `MintingAdrTransferred(...)` emitted in `transferMintingAddress(...)`
+* **LOW IMPORTANCE** Add a `Transfer(0x0, {account}, {amount});` event log in `updateBalanceOf(...)` when new tokens are minted
+* **LOW IMPORTANCE** Add a function for any individual account to update their balance 
 * **MEDIUM IMPORTANCE** `listOnSaleAddresses()` could cost more gas that the block gas limit making it impossible for anyone to list all
   the minting addresses on sale. Additionally, each user wanting to find out the list of minting addresses on sale will spend a non-significant
   amount of ethers getting an up-to-date list.
@@ -80,7 +92,9 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
   * Emit an event log message for each call to `sellMintingAddress(...)` with the following information: `_minPriceInDay` and
     `_expiryBlockNumber`
+    * [x] Fixed in [54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63)
   * Emit an event log message for each call to `buyMintingAddress(...)` when a minting address is successfully sold
+    * [x] Fixed in [54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63)
   * Provide a *constant* function to list each minting address on sale, and this function call does not emit any events
 
         function getOnSaleIds() constant public returns(uint[]) {
@@ -104,8 +118,10 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
     
     > idsOnSale=["1007","1008","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0", ...]
 
+    * [x] Fixed in [54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63)
   * Provide a *constant* function to list the sale status of the minting address specified in the function parameter
-
+    * [x] Fixed in [54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63)
+  * [x] Fixed in [54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63)
 * **LOW IMPORTANCE** - In *DayToken*, `isDayTokenActivated()` should be marked as a constant
   * [x] Fixed in [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW IMPORTANCE** - In *DayToken*, `isValidContributorId()` should be marked as a constant
@@ -118,7 +134,11 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
   changes the state
   * [x] Fixed in [25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83)
 
-TODO: Review below after removal of the crowdsale contracts.
+<br />
+
+### Recommendations For The Crowdsale And Token Contracts
+
+These were the recommendations for the crowdsale and token contracts prior to the removal of the crowdsale contracts.
 
 * **HIGH IMPORTANCE** - In *DayToken*, `balances[_to] = safeAdd(balances[msg.sender], _value);` in `transfer(...)` should be
   `balances[_to] = safeAdd(balances[to], _value); `
@@ -139,10 +159,10 @@ TODO: Review below after removal of the crowdsale contracts.
 * **LOW IMPORTANCE** - In *Crowdsale*, `preMinWei`, `preMaxWei`, `minWei` and `maxWei` should be made public to provide visibility
 * **LOW IMPORTANCE** - In *AddressCappedCrowdsale*, `maxIcoAddresses` is never used
   * [x] Fixed in [fd679446](https://github.com/chronologic/chronologic/commit/fd679446f01c2d29b02856719548d6a35e8c34c8)
-* **LOW IMPORTANCE** - In *DayToken*, `isValidContributorId(...)` and `isValidContributorAddress(...)` should be made constant
 * **LOW IMPORTANCE** - Remove `DayToken.updateAllBalances()`. After enquiring about the potentially large gas cost of executing
   this function, the developers have stated that this function is not required any more, as balances are now calculated on the fly
   and this function is now disabled by default, using the switch `updateAllBalancesEnabled`
+  * [x] Fixed prior to [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 * **LOW/MEDIUM? IMPORTANCE** `totalSupply` (504,011) does not match up with the total token balances from the accounts (504,000)
 
        # Account                                             EtherBalanceChange                          Token Name
@@ -175,6 +195,8 @@ TODO: Review below after removal of the crowdsale contracts.
   deployed with an `_initialSupply` of 0.
 
   This issue may be fixed by the next issue.
+
+  * [x] Fixed prior to [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 
 * **HIGH IMPORTANCE** `DayToken.balanceOf(...)` does not work as expected for non-minting addresses. If DAY tokens are transferred
   from a minting address to a non-minting address, the non-minting address is not registered in the `DayToken.contributors` data
@@ -220,9 +242,7 @@ TODO: Review below after removal of the crowdsale contracts.
           return balances[adr]; 
       }
 
-* **LOW IMPORTANCE** `DayToken.isTeamLockInPeriodOverIfTeamAddress(...)` can be set as a constant function
-* **LOW IMPORTANCE** `DayToken.isValidContributorId(...)` can be set as a constant function
-* **LOW IMPORTANCE** `DayToken.isValidContributorAddress(...)` can be set as a constant function
+  * [x] Fixed prior to [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6)
 
 <br />
 
