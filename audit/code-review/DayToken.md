@@ -57,6 +57,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     }
 
     /* Stores maximum days for which minting will happen since minting epoch */
+    // BK Ok
     uint256 public maxMintingDays = 1095;
 
     /* Mapping to store id of each minting address */
@@ -117,6 +118,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     // BK Ok
     uint256 public halvingCycle; 
     /* Unix timestamp when minting is to be started */
+    // BK Ok
     uint256 public initialBlockTimestamp;
     /* Flag to prevent setting initialBlockTimestamp more than once */
     // BK Ok
@@ -136,7 +138,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     // BK Ok
     uint256 public DayInSecs;
 
-    // BK Next 5 Ok
+    // BK Next 6 Ok
     event UpdatedTokenInformation(string newName, string newSymbol); 
     event MintingAdrTransferred(address from, address to);
     event ContributorAdded(address adr, uint id);
@@ -413,7 +415,11 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Returns minting power of a particular id.
         * @param _id Contribution id whose minting power is to be returned
         */
+    // BK Ok
     function getMintingPowerById(uint _id) public constant returns (uint256 mintingPower) {
+        // BK NOTE - getPhaseCount(...) always >= 1
+        // BK NOTE - Divisor always 1 or more
+        // BK Ok
         return contributors[_id].mintingPower/(2**(getPhaseCount(getDayCount())-1)); 
     }
 
@@ -439,6 +445,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     function availableBalanceOf(uint256 _id, uint _dayCount) internal returns (uint256) {
         // BK Ok
         uint256 balance = balances[contributors[_id].adr]; 
+        // BK Ok
         uint maxUpdateDays = _dayCount < maxMintingDays ? _dayCount : maxMintingDays;
         uint i = contributors[_id].lastUpdatedOn + 1;
         while(i <= maxUpdateDays) {
