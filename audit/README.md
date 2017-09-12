@@ -15,8 +15,9 @@ Commits without the crowdsale code were
 [6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417),
 [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6),
 [25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83),
-[54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63) and
-[af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b).
+[54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63),
+[af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b) and
+[33c4826](https://github.com/chronologic/chronologic/commit/33c4826aa51dbf720e2a3ed8385669b85a6926aa).
 
 <br />
 
@@ -64,9 +65,13 @@ These are the recommendations for the token contracts after the removal of the c
 
 * **LOW IMPORTANCE** Add a `Transfer({source}, {destination}, {amount});` event log in `sellMintingAddress(...)`, `buyMintingAddress(...)`,
   `fetchSuccessfulSaleProceed()` and `refundFailedAuctionAmount()` - any where tokens are transferred
+  * Fixed in [af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b)
 * **LOW IMPORTANCE** Add the `id` to the event `MintingAdrTransferred(...)` emitted in `transferMintingAddress(...)`
+  * Fixed in [af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b)
 * **LOW IMPORTANCE** Add a `Transfer(0x0, {account}, {amount});` event log in `updateBalanceOf(...)` when new tokens are minted
-* **LOW IMPORTANCE** Add a function for any individual account to update their balance 
+  * Fixed in [af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b)
+* **LOW IMPORTANCE** Add a function for any individual account to update their balance
+  * Fixed in [33c4826](https://github.com/chronologic/chronologic/commit/33c4826aa51dbf720e2a3ed8385669b85a6926aa) 
 * **MEDIUM IMPORTANCE** `listOnSaleAddresses()` could cost more gas that the block gas limit making it impossible for anyone to list all
   the minting addresses on sale. Additionally, each user wanting to find out the list of minting addresses on sale will spend a non-significant
   amount of ethers getting an up-to-date list.

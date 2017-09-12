@@ -316,6 +316,12 @@ function printTokenContractDetails() {
     console.log("RESULT: token.upgradeAgent=" + contract.upgradeAgent());
     console.log("RESULT: token.totalUpgraded=" + contract.totalUpgraded().shift(-decimals));
 
+    var onSaleIds = contract.getOnSaleIds();
+    onSaleIds.forEach(function(e) {
+      if (e != 0) {
+        console.log("RESULT: OnSale " + e + " status=" + contract.getSellingStatus(e) + " contributors(" + e + ")=" + contract.contributors(e));
+      }
+    });
 
     var latestBlock = eth.blockNumber;
     var i;
