@@ -14,8 +14,9 @@ Commits without the crowdsale code were
 [17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860),
 [6be55de](https://github.com/chronologic/chronologic/commit/6be55de9774819e7ab3c7f496f861bff8ab91417),
 [817ac9f](https://github.com/chronologic/chronologic/commit/817ac9f24d0057b6faafe8e9e7c3ce1f8c2a32c6),
-[25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83) and
-[54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63).
+[25c153b](https://github.com/chronologic/chronologic/commit/25c153b028f2007c0ea6e3f0ef614f4c8c0acd83),
+[54f032a](https://github.com/chronologic/chronologic/commit/54f032a244d066e09b52445d9171ff514e9baa63) and
+[af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b).
 
 <br />
 
