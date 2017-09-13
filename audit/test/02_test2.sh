@@ -18,8 +18,8 @@ TOKENJS=`grep ^TOKENJS= settings.txt | sed "s/^.*=//"`
 
 DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
 
-TEST1OUTPUT=`grep ^TEST1OUTPUT= settings.txt | sed "s/^.*=//"`
-TEST1RESULTS=`grep ^TEST1RESULTS= settings.txt | sed "s/^.*=//"`
+TEST2OUTPUT=`grep ^TEST2OUTPUT= settings.txt | sed "s/^.*=//"`
+TEST2RESULTS=`grep ^TEST2RESULTS= settings.txt | sed "s/^.*=//"`
 
 CURRENTTIME=`date +%s`
 CURRENTTIMES=`date -r $CURRENTTIME -u`
@@ -38,22 +38,22 @@ STARTTIME_S=`date -r $STARTTIME -u`
 ENDTIME=`echo "$CURRENTTIME+60*3" | bc`
 ENDTIME_S=`date -r $ENDTIME -u`
 
-printf "MODE                 = '$MODE'\n" | tee $TEST1OUTPUT
-printf "GETHATTACHPOINT      = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
-printf "PASSWORD             = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
+printf "MODE                 = '$MODE'\n" | tee $TEST2OUTPUT
+printf "GETHATTACHPOINT      = '$GETHATTACHPOINT'\n" | tee -a $TEST2OUTPUT
+printf "PASSWORD             = '$PASSWORD'\n" | tee -a $TEST2OUTPUT
 
-printf "CONTRACTSDIR         = '$CONTRACTSDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSDIR         = '$CONTRACTSDIR'\n" | tee -a $TEST2OUTPUT
 
-printf "TOKENSOL             = '$TOKENSOL'\n" | tee -a $TEST1OUTPUT
-printf "TOKENTEMPSOL         = '$TOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "TOKENJS              = '$TOKENJS'\n" | tee -a $TEST1OUTPUT
+printf "TOKENSOL             = '$TOKENSOL'\n" | tee -a $TEST2OUTPUT
+printf "TOKENTEMPSOL         = '$TOKENTEMPSOL'\n" | tee -a $TEST2OUTPUT
+printf "TOKENJS              = '$TOKENJS'\n" | tee -a $TEST2OUTPUT
 
-printf "DEPLOYMENTDATA       = '$DEPLOYMENTDATA'\n" | tee -a $TEST1OUTPUT
-printf "TEST1OUTPUT          = '$TEST1OUTPUT'\n" | tee -a $TEST1OUTPUT
-printf "TEST1RESULTS         = '$TEST1RESULTS'\n" | tee -a $TEST1OUTPUT
-printf "CURRENTTIME          = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST1OUTPUT
-printf "STARTTIME            = '$STARTTIME' '$STARTTIME_S'\n" | tee -a $TEST1OUTPUT
-printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
+printf "DEPLOYMENTDATA       = '$DEPLOYMENTDATA'\n" | tee -a $TEST2OUTPUT
+printf "TEST2OUTPUT          = '$TEST2OUTPUT'\n" | tee -a $TEST2OUTPUT
+printf "TEST2RESULTS         = '$TEST2RESULTS'\n" | tee -a $TEST2OUTPUT
+printf "CURRENTTIME          = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST2OUTPUT
+printf "STARTTIME            = '$STARTTIME' '$STARTTIME_S'\n" | tee -a $TEST2OUTPUT
+printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST2OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL`
@@ -80,12 +80,12 @@ printf "ENDTIME              = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 #`perl -pi -e "s/uint maxWei;/uint public maxWei;/" Crowdsale.sol`
 
 DIFFS1=`diff $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
+echo "--- Differences $CONTRACTSDIR/$TOKENSOL $TOKENTEMPSOL ---" | tee -a $TEST2OUTPUT
+echo "$DIFFS1" | tee -a $TEST2OUTPUT
 
 echo "var tokenOutput=`solc --optimize --combined-json abi,bin,interface $TOKENTEMPSOL`;" > $TOKENJS
 
-geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
+geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST2OUTPUT
 loadScript("$TOKENJS");
 loadScript("functions.js");
 
@@ -112,8 +112,8 @@ var _firstTeamContributorId = 10;
 var _totalTeamContributorIds = 5;
 var _totalPostIcoContributorIds = 5;
 // ORIGINAL var _minMintingPower = 5000000000000000000;
-var _minMintingPower = 10000000000000000000;
-var _maxMintingPower = 10000000000000000000;
+var _minMintingPower = 0;
+var _maxMintingPower = 0;
 var _halvingCycle = 88;
 var _minBalanceToSell = 8888;
 // ORIGINAL var _DayInSecs = 84600;
@@ -325,7 +325,7 @@ console.log("RESULT: ");
 
 
 EOF
-grep "DATA: " $TEST1OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
+grep "DATA: " $TEST2OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
 cat $DEPLOYMENTDATA
-grep "RESULT: " $TEST1OUTPUT | sed "s/RESULT: //" > $TEST1RESULTS
-cat $TEST1RESULTS
+grep "RESULT: " $TEST2OUTPUT | sed "s/RESULT: //" > $TEST2RESULTS
+cat $TEST2RESULTS

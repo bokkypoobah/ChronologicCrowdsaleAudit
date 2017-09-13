@@ -257,8 +257,38 @@ These were the recommendations for the crowdsale and token contracts prior to th
 
 ## Testing
 
-* Testing script [test/01_test1.sh](test/01_test1.sh)
-* Testing results [test/test1results.txt](test/test1results.txt)
+### Test 1
+
+* Testing script [test/01_test1.sh](test/01_test1.sh) with results in [test/test1results.txt](test/test1results.txt) and raw output in [test/test1output.txt](test/test1output.txt)
+* Assumptions
+  * `_DayInSecs = 10`
+  * `_minMintingPower = 10000000000000000000;`
+  * `_maxMintingPower = 10000000000000000000;`
+* Actions
+  * Deployment of contract
+  * Deployment of 6 minters
+  * Testing token transfers
+  * Place 2 minters on sale
+  * Purchase of 1 minter
+  * Sanity check of the resulting token distribution
+
+<br />
+
+### Test 2
+
+* Testing script [test/02_test2.sh](test/02_test2.sh) with results in [test/test2results.txt](test/test2results.txt) and raw output in [test/test2output.txt](test/test2output.txt)
+* Assumptions
+  * `_DayInSecs = 10`
+  * `_minMintingPower = 0;`
+  * `_maxMintingPower = 0;`
+* Actions
+  * Deployment of contract
+  * Deployment of 6 minters
+  * Testing token transfers
+  * Place 2 minters on sale
+  * Purchase of 1 minter
+  * Sanity check of the resulting token distribution
+
 
 <br />
 
