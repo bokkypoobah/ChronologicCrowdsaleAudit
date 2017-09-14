@@ -32,7 +32,7 @@ import "./SafeMathLib.sol";
 // BK Ok
 contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
 
-    // BK Ok
+    // BK Ok            0          1        2
     enum sellingStatus {NOTONSALE, EXPIRED, ONSALE}
 
     /** Basic structure for a contributor with a minting Address
@@ -45,7 +45,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
      * status Selling status Variable for transfer Minting address.
      * sellingPriceInDay Variable for transfer Minting address. Price at which the address is actually sold
      */ 
-    // BK Ok
+    // BK Next block Ok
     struct Contributor {
         address adr;
         uint256 initialContributionDay;
@@ -447,6 +447,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         uint256 balance = balances[contributors[_id].adr]; 
         // BK Ok
         uint maxUpdateDays = _dayCount < maxMintingDays ? _dayCount : maxMintingDays;
+        // BK CHECK
         uint i = contributors[_id].lastUpdatedOn + 1;
         while(i <= maxUpdateDays) {
              uint phase = getPhaseCount(i);
@@ -479,6 +480,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
             // proceed only if not already updated today
             // BK Ok
             if (contributors[_id].lastUpdatedOn != dayCount && contributors[_id].lastUpdatedOn < maxMintingDays) {
+                // BK CHECK
                 address adr = contributors[_id].adr;
                 uint oldBalance = balances[adr];
                 totalSupply = safeSub(totalSupply, oldBalance);
@@ -697,6 +699,16 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     }
 
 
+    /** Function to be called by minting address in order to cancel the sale of their TimeMint
+        */
+    function cancelSaleOfMintingAddress() onlyContributor(idOf[msg.sender]) public {
+        uint id = idOf[msg.sender];
+        // TimeMint should be on sale
+        require(contributors[id].status == sellingStatus.ONSALE);
+        contributors[id].status = sellingStatus.EXPIRED;
+    }
+
+
     /** Function to be called by any user to get a list of all On Sale TimeMints
         */
     function getOnSaleIds() constant public returns(uint[]) {
@@ -734,7 +746,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _offerId ID number of the address to be bought by the buyer
         * @param _offerInDay Offer given by the buyer in number of DAY tokens
         */
-    function buyMintingAddress(uint _offerId, uint256 _offerInDay) public returns(bool){
+    function buyMintingAddress(uint _offerId, uint256 _offerInDay) public returns(bool) {
         if (contributors[_offerId].status == sellingStatus.ONSALE 
             && block.number > contributors[_offerId].expiryBlockNumber)
         {
@@ -743,6 +755,10 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         address soldAddress = contributors[_offerId].adr;
         require(contributors[_offerId].status == sellingStatus.ONSALE);
         require(_offerInDay >= contributors[_offerId].minPriceInDay);
+
+        // prevent seller from cancelling sale in between
+        contributors[_offerId].status = sellingStatus.NOTONSALE;
+
         // first get the offered DayToken in the token contract & 
         // then transfer the total sum (minBalanceToSend+_offerInDay) to the seller
         balances[msg.sender] = safeSub(balances[msg.sender], _offerInDay);
@@ -782,7 +798,6 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         contributors[id].lastUpdatedOn = getDayCount();
         contributors[id].expiryBlockNumber = 0;
         contributors[id].minPriceInDay = 0;
-        contributors[id].status = sellingStatus.NOTONSALE;
         MintingAdrTransferred(id, _from, _to);
         return true;
     }
@@ -815,11 +830,12 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
             contributors[id].status = sellingStatus.EXPIRED;
         }
         require(contributors[id].status == sellingStatus.EXPIRED);
+        // reset selling status
+        contributors[id].status = sellingStatus.NOTONSALE;
         balances[this] = safeSub(balances[this], minBalanceToSell);
         // update balance of seller address before refunding
         updateBalanceOf(id);
         balances[msg.sender] = safeAdd(balances[msg.sender], minBalanceToSell);
-        contributors[id].status = sellingStatus.NOTONSALE;
         contributors[id].minPriceInDay = 0;
         contributors[id].expiryBlockNumber = 0;
         Transfer(this, msg.sender, minBalanceToSell);
