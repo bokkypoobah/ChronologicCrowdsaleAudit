@@ -27,6 +27,8 @@ The crowdsale contracts were not ready for deployment at the commencement of the
 sent their contributions to a multisig wallet at
 [0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121](https://etherscan.io/address/0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121).
 
+Sep 16 2015 The *DayToken* contract has been deployed to [0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945](https://etherscan.io/address/0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945#code).
+
 <br />
 
 ### Token Contract
