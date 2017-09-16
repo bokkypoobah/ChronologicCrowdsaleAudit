@@ -1,7 +1,5 @@
 # Chronologic Crowdsale Contract Audit
 
-Status: Work in progress
-
 Commits with the crowdsale code were
 [3ba1fe8](https://github.com/chronologic/chronologic/commit/3ba1fe830881ca9e85f2c2db3e77b3b333bc4dd1),
 [fd67944](https://github.com/chronologic/chronologic/commit/fd679446f01c2d29b02856719548d6a35e8c34c8),
