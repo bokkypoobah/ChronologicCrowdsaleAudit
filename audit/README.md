@@ -1,12 +1,26 @@
-# Chronologic Crowdsale Contract Audit
+# ChronoLogic Crowdsale Contract Audit
 
-Commits with the crowdsale code were
+<br />
+
+## Summary
+
+[ChronoLogic](https://chronologic.network/) [ran a crowdsale](https://blog.chronologic.network/chronologic-contribution-period-closed-successful-3655b738757e)
+that commenced on August 27 2017 and closed on September 10 2017. The whitepaper can be found
+[here](https://chronologic.network/uploads/Chronologic_Whitepaper.pdf).
+
+Bok Consulting Pty Ltd was commissioned to perform an audit on the Ethereum smart contracts for ChronoLogic's crowdsale.
+
+Source code for the original crowdsale/token code that were submitted for audit was available in commits
 [3ba1fe8](https://github.com/chronologic/chronologic/commit/3ba1fe830881ca9e85f2c2db3e77b3b333bc4dd1),
 [fd67944](https://github.com/chronologic/chronologic/commit/fd679446f01c2d29b02856719548d6a35e8c34c8),
 [be2bbba](https://github.com/chronologic/chronologic/commit/be2bbba97ba1c78206d2a21724f6e0b94c9afd93) and
 [73a775a](https://github.com/chronologic/chronologic/commit/73a775a61af2c3acdc81dce604aa005e6bd96290).
 
-Commits without the crowdsale code were
+However the development of the *DayToken* smart contract code was not completed before the start of the crowdsale and
+participants sent their ether contributions directly to a multisig wallet at
+[0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121](https://etherscan.io/address/0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121).
+
+The crowdsale code was removed from the repository and the refinment of the *DayToken* smart contract continued in commits
 [677175a](https://github.com/chronologic/chronologic/commit/677175a5d698bd6f524f59de4cca7f6c1526f32d),
 [c91ab6a](https://github.com/chronologic/chronologic/commit/c91ab6abacf29d577a49d5e44a4573e68a1e92c2),
 [17e11f0](https://github.com/chronologic/chronologic/commit/17e11f08d632e0fe991f740427f573c7fe7f4860),
@@ -17,27 +31,29 @@ Commits without the crowdsale code were
 [af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b) and
 [33c4826](https://github.com/chronologic/chronologic/commit/33c4826aa51dbf720e2a3ed8385669b85a6926aa).
 
-<br />
+On Sep 16 2015 the finalised *DayToken* contract was deployed to
+[0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945](https://etherscan.io/address/0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945#code).
 
-## Summary
-
-The crowdsale contracts were not ready for deployment at the commencement of the crowdsale, so crowdsale participants
-sent their contributions to a multisig wallet at
-[0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121](https://etherscan.io/address/0xA723606e907bF84215d5785Ea7f6cD93A0Fbd121).
-
-Sep 16 2015 The *DayToken* contract has been deployed to [0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945](https://etherscan.io/address/0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945#code).
+No potential vulnerabilities have been identified in the token contract.
 
 <br />
 
 ### Token Contract
 
-The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compliant with the following features:
+The token contract is [ERC20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md) 
+with the following features:
 
 * `decimals` is correctly defined as `uint8` instead of `uint256`
 * `transfer(...)` and `transferFrom(...)` will throw an error instead of return true/false when the transfer is invalid
 * `transfer(...)` and `transferFrom(...)` have not been built with a check on the size of the data being passed. This check is
   [no longer a recommended feature](https://blog.coinfabrik.com/smart-contract-short-address-attack-mitigation-failure/)
 * `approve(...)` has the [requirement that a non-zero approval limit be set to 0 before a new non-zero limit can be set](https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729)
+* The owner is able to modify the `name` and `symbol` of this token contract at any time
+* The token balances on "minter" accounts will increase in value daily. The new balance is only calculated when certain
+  transactions are executed. The increase in the `totalSupply` will be reflected when the new balance is calculated
+
+See [Know everything about your Time Mints](https://blog.chronologic.network/know-everything-about-your-time-mints-3f6fe7081560)
+for some of the features of this token contract.
 
 <br />
 
@@ -50,6 +66,11 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 * [Recommendations](#recommendations)
   * [Recommendations For The Token Contract Only](#recommendations-for-the-token-contract-only)
   * [Recommendations For The Crowdsale And Token Contracts](#recommendations-for-the-crowdsale-and-token-contracts)
+* [Potential Vulnerabilities](#potential-vulnerabilities)
+* [Scope](#scope)
+* [Limitations](#limitations)
+* [Due Diligence](#due-diligence)
+* [Risks](#risks)
 * [Testing](#testing)
 * [Code Review](#code-review)
 
@@ -255,6 +276,67 @@ These were the recommendations for the crowdsale and token contracts prior to th
 
 <hr />
 
+## Potential Vulnerabilities
+
+No potential vulnerabilities have been identified in the token contract.
+
+<br />
+
+<hr />
+
+## Scope
+
+This audit is into the technical aspects of the crowdsale contracts. The primary aim of this audit is to ensure that 
+and funds contributed to these contracts are not easily attacked or stolen by third parties. The secondary aim of this
+audit is that ensure the coded algorithms work as expected. This audit does not guarantee that that the code is bugfree,
+but intends to highlight any areas of weaknesses.
+
+<br />
+
+<hr />
+
+## Limitations
+
+This audit makes no statements or warranties about the viability of the ChronoLogic's business proposition, the individuals
+involved in this business or the regulatory regime for the business model.
+
+<br />
+
+<hr />
+
+## Due Diligence
+
+As always, potential participants in any crowdsale are encouraged to perform their due diligence on the business proposition
+before funding any crowdsales.
+
+Potential participants are also encouraged to only send their funds to the official crowdsale Ethereum address, published on
+the crowdsale beneficiary's official communication channel.
+
+Scammers have been publishing phishing address in the forums, twitter and other communication channels, and some go as far as
+duplicating crowdsale websites. Potential participants should NOT just click on any links received through these messages.
+Scammers have also hacked the crowdsale website to replace the crowdsale contract address with their scam address.
+ 
+Potential participants should also confirm that the verified source code on EtherScan.io for the published crowdsale address
+matches the audited source code, and that the deployment parameters are correctly set, including the constant parameters.
+
+<br />
+
+<hr />
+
+## Risks
+
+* There is no risk of ether funds getting stolen or hacked from the crowdsale or token contracts as the contributed funds
+  were collected in a multisig wallet. *DayToken* balances for each contribution was computed and
+  [later minted](https://blog.chronologic.network/timemint-assignments-615f859bdc12) when the completed *DayToken* contract
+  was deployed.
+
+* This *DayToken* contract has some complexity in the minting, offer for sale, purchase and transfer of the tokens algorithm
+  and there is a slight chance the algorithm could contain unintended calculations.
+
+<br />
+
+<hr />
+
 ## Testing
 
 ### Test 1
@@ -314,8 +396,8 @@ These were the recommendations for the crowdsale and token contracts prior to th
   * [x] contract UpgradeAgent
 * [x] [code-review/UpgradeableToken.md](code-review/UpgradeableToken.md)
   * [x] contract UpgradeableToken is StandardToken 
-* [ ] [code-review/DayToken.md](code-review/DayToken.md)
-  * [ ] contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken
+* [x] [code-review/DayToken.md](code-review/DayToken.md)
+  * [x] contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken
 
 <br />
 
@@ -393,3 +475,8 @@ An audit on a previous version of this multisig has already been done by [Martin
 The following file is used for the testing framework are is outside the scope of this review: 
 * [../contracts/Migrations.sol](../contracts/Migrations.sol)
 
+<br />
+
+<br />
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd for ChronoLogic - Sep 17 2017. The MIT Licence.

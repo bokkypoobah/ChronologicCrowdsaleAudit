@@ -361,6 +361,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     /**
         * Owner can update token information here
         */
+    // BK NOTE - Some systems will expect these values to be hard-coded
     // BK Ok
     function setTokenInformation(string _name, string _symbol) onlyOwner {
         // BK Ok
@@ -404,7 +405,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Called before Minting Epoch by constructor
         * @param _id id of the address whose minting power is to be set.
         */
-    // BK Ok
+    // BK Ok - Internal
     function setInitialMintingPowerOf(uint256 _id) internal onlyContributor(_id) {
         // BK Ok
         contributors[_id].mintingPower = 
@@ -415,7 +416,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Returns minting power of a particular id.
         * @param _id Contribution id whose minting power is to be returned
         */
-    // BK Ok
+    // BK Ok - Constant function
     function getMintingPowerById(uint _id) public constant returns (uint256 mintingPower) {
         // BK NOTE - getPhaseCount(...) always >= 1
         // BK NOTE - Divisor always 1 or more
@@ -427,7 +428,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Returns minting power of a particular address.
         * @param _adr Address whose minting power is to be returned
         */
-    // BK Ok
+    // BK Ok - Constant function
     function getMintingPowerByAddress(address _adr) public constant returns (uint256 mintingPower) {
         // BK Ok
         return getMintingPowerById(idOf[_adr]);
@@ -447,20 +448,28 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         uint256 balance = balances[contributors[_id].adr]; 
         // BK Ok
         uint maxUpdateDays = _dayCount < maxMintingDays ? _dayCount : maxMintingDays;
-        // BK CHECK
+        // BK Ok
         uint i = contributors[_id].lastUpdatedOn + 1;
+        // BK Ok
         while(i <= maxUpdateDays) {
+             // BK Ok
              uint phase = getPhaseCount(i);
+             // BK Ok
              uint phaseEndDay = phase * halvingCycle - 1; // as first day is 0
+             // BK Ok
              uint constantFactor = contributors[_id].mintingPower / 2**(phase-1);
 
+            // BK Ok
             for (uint j = i; j <= phaseEndDay && j <= maxUpdateDays; j++) {
+                // BK Ok
                 balance = safeAdd( balance, constantFactor * balance / 10**(mintingDec + 2) );
             }
 
+            // BK Ok
             i = j;
             
         } 
+        // BK Ok
         return balance; 
     }
 
@@ -470,7 +479,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Only for internal calls. Not public.
         * @param _id id whose balance is to be updated.
         */
-    // BK Ok
+    // BK Ok - Internal function
     function updateBalanceOf(uint256 _id) internal returns (bool success) {
         // check if its contributor
         // BK Ok
@@ -480,16 +489,23 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
             // proceed only if not already updated today
             // BK Ok
             if (contributors[_id].lastUpdatedOn != dayCount && contributors[_id].lastUpdatedOn < maxMintingDays) {
-                // BK CHECK
+                // BK Ok
                 address adr = contributors[_id].adr;
+                // BK Ok
                 uint oldBalance = balances[adr];
+                // BK Ok
                 totalSupply = safeSub(totalSupply, oldBalance);
+                // BK Ok
                 uint newBalance = availableBalanceOf(_id, dayCount);
+                // BK Ok
                 balances[adr] = newBalance;
+                // BK Ok
                 totalSupply = safeAdd(totalSupply, newBalance);
+                // BK Ok
                 contributors[_id].lastUpdatedOn = dayCount;
                 // BK Ok
                 Transfer(0, adr, newBalance - oldBalance);
+                // BK Ok
                 return true; 
             }
         }
@@ -506,7 +522,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * For public calls.
         * @param _adr address whose balance is to be returned.
         */
-    // BK Ok
+    // BK Ok - Constant function
     function balanceOf(address _adr) constant returns (uint balance) {
         // BK Ok
         uint id = idOf[_adr];
@@ -548,7 +564,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     /**
         * Returns totalSupply of DAY tokens.
         */
-    // BK Ok
+    // BK Ok - Constant function
     function getTotalSupply() public constant returns (uint) {
         // BK Ok
         return totalSupply;
@@ -559,16 +575,22 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * returns true if balance updated, false otherwise
         * @param _id TimeMint to update
         */
+    // BK Ok
     function updateTimeMintBalance(uint _id) public returns (bool) {
+        // BK Ok
         require(isDayTokenActivated());
+        // BK Ok
         return updateBalanceOf(_id);
     }
 
     /** Function to update balance of sender's Timemint
         * returns true if balance updated, false otherwise
         */
+    // BK Ok
     function updateMyTimeMintBalance() public returns (bool) {
+        // BK Ok
         require(isDayTokenActivated());
+        // BK Ok
         return updateBalanceOf(idOf[msg.sender]);
     }
 
@@ -654,18 +676,29 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _adr Address of the contributor to be added  
         * @param _initialContributionDay Initial Contribution of the contributor to be added
         */
+  // BK Ok - Internal function
   function addContributor(uint contributorId, address _adr, uint _initialContributionDay) internal onlyOwner {
+        // BK Ok
         require(contributorId <= maxAddresses);
         //address should not be an existing contributor
+        // BK Ok
         require(!isValidContributorAddress(_adr));
         //TimeMint should not be already allocated
+        // BK Ok
         require(!isValidContributorId(contributorId));
+        // BK Ok
         contributors[contributorId].adr = _adr;
+        // BK Ok
         idOf[_adr] = contributorId;
+        // BK Ok
         setInitialMintingPowerOf(contributorId);
+        // BK Ok
         contributors[contributorId].initialContributionDay = _initialContributionDay;
+        // BK Ok
         contributors[contributorId].lastUpdatedOn = getDayCount();
+        // BK Ok
         ContributorAdded(_adr, contributorId);
+        // BK Ok
         contributors[contributorId].status = sellingStatus.NOTONSALE;
     }
 
@@ -674,56 +707,83 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _minPriceInDay Minimum price in DAY tokens set by the seller
         * @param _expiryBlockNumber Expiry Block Number set by the seller
         */
+    // BK Ok
     function sellMintingAddress(uint256 _minPriceInDay, uint _expiryBlockNumber) public returns (bool) {
+        // BK Ok
         require(isDayTokenActivated());
+        // BK Ok
         require(_expiryBlockNumber > block.number);
 
         // if Team address, check if lock-in period is over
         // BK Ok
         require(isTeamLockInPeriodOverIfTeamAddress(msg.sender));
 
+        // BK Ok
         uint id = idOf[msg.sender];
+        // BK Ok
         require(contributors[id].status == sellingStatus.NOTONSALE);
 
         // update balance of sender address before checking for minimum required balance
+        // BK Ok
         updateBalanceOf(id);
+        // BK Ok
         require(balances[msg.sender] >= minBalanceToSell);
+        // BK Ok
         contributors[id].minPriceInDay = _minPriceInDay;
+        // BK Ok
         contributors[id].expiryBlockNumber = _expiryBlockNumber;
+        // BK Ok
         contributors[id].status = sellingStatus.ONSALE;
+        // BK Ok
         balances[msg.sender] = safeSub(balances[msg.sender], minBalanceToSell);
+        // BK Ok
         balances[this] = safeAdd(balances[this], minBalanceToSell);
+        // BK Ok
         Transfer(msg.sender, this, minBalanceToSell);
+        // BK Ok
         TimeMintOnSale(id, msg.sender, contributors[id].minPriceInDay, contributors[id].expiryBlockNumber);
+        // BK Ok
         return true;
     }
 
 
     /** Function to be called by minting address in order to cancel the sale of their TimeMint
         */
+    // BK Ok
     function cancelSaleOfMintingAddress() onlyContributor(idOf[msg.sender]) public {
+        // BK Ok
         uint id = idOf[msg.sender];
         // TimeMint should be on sale
+        // BK Ok
         require(contributors[id].status == sellingStatus.ONSALE);
+        // BK Ok
         contributors[id].status = sellingStatus.EXPIRED;
     }
 
 
     /** Function to be called by any user to get a list of all On Sale TimeMints
         */
+    // BK Ok
     function getOnSaleIds() constant public returns(uint[]) {
+        // BK Ok
         uint[] memory idsOnSale = new uint[](maxAddresses);
+        // BK Ok
         uint j = 0;
+        // BK Ok
         for(uint i=1; i <= maxAddresses; i++) {
 
+            // BK Ok
             if ( isValidContributorId(i) &&
                 block.number <= contributors[i].expiryBlockNumber && 
                 contributors[i].status == sellingStatus.ONSALE ) {
+                    // BK Ok
                     idsOnSale[j] = i;
+                    // BK Ok
                     j++;     
             }
             
         }
+        // BK Ok
         return idsOnSale;
     }
 
@@ -732,13 +792,19 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * returns status 0 - Not on sale, 1 - Expired, 2 - On sale,
         * @param _id ID number of the Time Mint 
         */
+    // BK Ok
     function getSellingStatus(uint _id) constant public returns(sellingStatus status) {
+        // BK Ok
         require(isValidContributorId(_id));
+        // BK Ok
         status = contributors[_id].status;
+        // BK Ok
         if ( block.number > contributors[_id].expiryBlockNumber && 
                 status == sellingStatus.ONSALE )
+            // BK Ok
             status = sellingStatus.EXPIRED;
 
+        // BK Ok
         return status;
     }
 
@@ -746,30 +812,45 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _offerId ID number of the address to be bought by the buyer
         * @param _offerInDay Offer given by the buyer in number of DAY tokens
         */
+    // BK Ok
     function buyMintingAddress(uint _offerId, uint256 _offerInDay) public returns(bool) {
+        // BK Ok
         if (contributors[_offerId].status == sellingStatus.ONSALE 
             && block.number > contributors[_offerId].expiryBlockNumber)
         {
+            // BK Ok
             contributors[_offerId].status = sellingStatus.EXPIRED;
         }
+        // BK Ok
         address soldAddress = contributors[_offerId].adr;
+        // BK Ok
         require(contributors[_offerId].status == sellingStatus.ONSALE);
+        // BK Ok
         require(_offerInDay >= contributors[_offerId].minPriceInDay);
 
         // prevent seller from cancelling sale in between
+        // BK Ok
         contributors[_offerId].status = sellingStatus.NOTONSALE;
 
         // first get the offered DayToken in the token contract & 
         // then transfer the total sum (minBalanceToSend+_offerInDay) to the seller
+        // BK Ok
         balances[msg.sender] = safeSub(balances[msg.sender], _offerInDay);
+        // BK Ok
         balances[this] = safeAdd(balances[this], _offerInDay);
+        // BK Ok
         Transfer(msg.sender, this, _offerInDay);
+        // BK Ok
         if(transferMintingAddress(contributors[_offerId].adr, msg.sender)) {
             //mark the offer as sold & let seller pull the proceed to their own account.
+            // BK Ok
             sellingPriceInDayOf[soldAddress] = _offerInDay;
-            soldAddresses[soldAddress] = true; 
+            // BK Ok
+            soldAddresses[soldAddress] = true;
+            // BK Ok 
             TimeMintSold(_offerId, msg.sender, _offerInDay);  
         }
+        // BK Ok
         return true;
     }
 
@@ -780,25 +861,39 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * returns true if successful and false if not.
         * @param _to address of the user to which minting address is to be tranferred
         */
+    // BK Ok - Internal function
     function transferMintingAddress(address _from, address _to) internal onlyContributor(idOf[_from]) returns (bool) {
+        // BK Ok
         require(isDayTokenActivated());
 
         // _to should be non minting address
+        // BK Ok
         require(!isValidContributorAddress(_to));
         
+        // BK Ok
         uint id = idOf[_from];
         // update balance of from address before transferring minting power
+        // BK Ok
         updateBalanceOf(id);
 
+        // BK Ok
         contributors[id].adr = _to;
+        // BK Ok
         idOf[_to] = id;
+        // BK Ok
         idOf[_from] = 0;
+        // BK Ok
         contributors[id].initialContributionDay = 0;
         // needed as id is assigned to new address
+        // BK Ok
         contributors[id].lastUpdatedOn = getDayCount();
+        // BK Ok
         contributors[id].expiryBlockNumber = 0;
+        // BK Ok
         contributors[id].minPriceInDay = 0;
+        // BK Ok
         MintingAdrTransferred(id, _from, _to);
+        // BK Ok
         return true;
     }
 
@@ -807,14 +902,22 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * offer made by buyer after successful sale.
         * Throws if sale is not successful
         */
+    // BK Ok
     function fetchSuccessfulSaleProceed() public  returns(bool) {
+        // BK Ok
         require(soldAddresses[msg.sender] == true);
         // to prevent re-entrancy attack
+        // BK Ok
         soldAddresses[msg.sender] = false;
+        // BK Ok
         uint saleProceed = safeAdd(minBalanceToSell, sellingPriceInDayOf[msg.sender]);
+        // BK Ok
         balances[this] = safeSub(balances[this], saleProceed);
+        // BK Ok
         balances[msg.sender] = safeAdd(balances[msg.sender], saleProceed);
+        // BK Ok
         Transfer(this, msg.sender, saleProceed);
+        // BK Ok
         return true;
                 
     }
@@ -823,22 +926,35 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * Allowed only after expiryBlockNumber
         * Throws if any other state other than EXPIRED
         */
+    // BK Ok
     function refundFailedAuctionAmount() onlyContributor(idOf[msg.sender]) public returns(bool){
+        // BK Ok
         uint id = idOf[msg.sender];
+        // BK Ok
         if(block.number > contributors[id].expiryBlockNumber && contributors[id].status == sellingStatus.ONSALE)
         {
+            // BK Ok
             contributors[id].status = sellingStatus.EXPIRED;
         }
+        // BK Ok
         require(contributors[id].status == sellingStatus.EXPIRED);
         // reset selling status
+        // BK Ok
         contributors[id].status = sellingStatus.NOTONSALE;
+        // BK Ok
         balances[this] = safeSub(balances[this], minBalanceToSell);
         // update balance of seller address before refunding
+        // BK Ok
         updateBalanceOf(id);
+        // BK Ok
         balances[msg.sender] = safeAdd(balances[msg.sender], minBalanceToSell);
+        // BK Ok
         contributors[id].minPriceInDay = 0;
+        // BK Ok
         contributors[id].expiryBlockNumber = 0;
+        // BK Ok
         Transfer(this, msg.sender, minBalanceToSell);
+        // BK Ok
         return true;
     }
 
@@ -846,15 +962,23 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     /** Function to add a team address as a contributor and store it's time issued to calculate vesting period
         * Called by owner
         */
+    // BK Ok
     function addTeamTimeMints(address _adr, uint _id, uint _tokens, bool _isTest) public onlyOwner {
         //check if Id is in range of team Ids
+        // BK Ok
         require(_id >= firstTeamContributorId && _id < firstTeamContributorId + totalTeamContributorIds);
+        // BK Ok
         require(totalTeamContributorIdsAllocated < totalTeamContributorIds);
+        // BK Ok
         addContributor(_id, _adr, 0);
+        // BK Ok
         totalTeamContributorIdsAllocated++;
         // enforce lockin period if not test address
+        // BK Ok
         if(!_isTest) teamIssuedTimestamp[_adr] = block.timestamp;
+        // BK Ok
         mint(_adr, _tokens);
+        // BK Ok
         TeamAddressAdded(_adr, _id);
     }
 
@@ -864,15 +988,22 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _customerId Server side id of the customer
         * @param _id contributorId
         */
+    // BK Ok
     function postAllocateAuctionTimeMints(address _receiver, uint _customerId, uint _id) public onlyOwner {
 
         //check if Id is in range of Auction Ids
+        // BK Ok
         require(_id >= firstPostIcoContributorId && _id < firstPostIcoContributorId + totalPostIcoContributorIds);
+        // BK Ok
         require(totalPostIcoContributorIdsAllocated < totalPostIcoContributorIds);
         
+        // BK Ok
         require(released == true);
+        // BK Ok
         addContributor(_id, _receiver, 0);
+        // BK Ok
         totalPostIcoContributorIdsAllocated++;
+        // BK Ok
         PostInvested(_receiver, 0, 0, _customerId, _id);
     }
 
@@ -884,13 +1015,20 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
         * @param _tokens day tokens to allocate
         * @param _weiAmount ether invested in wei
         */
+    // BK Ok - Only owner can execute
     function allocateNormalTimeMints(address _receiver, uint _customerId, uint _id, uint _tokens, uint _weiAmount) public onlyOwner {
         // check if Id is in range of Normal Ids
+        // BK Ok
         require(_id >= firstContributorId && _id <= totalNormalContributorIds);
+        // BK Ok
         require(totalNormalContributorIdsAllocated < totalNormalContributorIds);
+        // BK Ok
         addContributor(_id, _receiver, _tokens);
+        // BK Ok
         totalNormalContributorIdsAllocated++;
+        // BK Ok
         mint(_receiver, _tokens);
+        // BK Ok
         Invested(_receiver, _weiAmount, _tokens, _customerId, _id);
         
     }
@@ -899,7 +1037,7 @@ contract DayToken is  ReleasableToken, MintableToken, UpgradeableToken {
     /** Function to release token
         * Called by owner
         */
-    // BK Ok
+    // BK Ok - Only owner can execute
     function releaseToken(uint _initialBlockTimestamp) public onlyOwner {
         // BK Ok
         require(!released); // check not already released
