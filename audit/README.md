@@ -1,5 +1,7 @@
 # ChronoLogic Crowdsale Contract Audit
 
+Status: Minting power calculations to be checked
+
 <br />
 
 ## Summary
@@ -65,6 +67,8 @@ for some of the features of this token contract.
 * [Table Of Contents](#table-of-contents)
 * [Recommendations](#recommendations)
   * [Recommendations For The Token Contract Only](#recommendations-for-the-token-contract-only)
+    * [Outstanding Recommendations](#outstanding-recommendations)
+    * [Closed Recommendations](#closed-recommendations)
   * [Recommendations For The Crowdsale And Token Contracts](#recommendations-for-the-crowdsale-and-token-contracts)
 * [Potential Vulnerabilities](#potential-vulnerabilities)
 * [Scope](#scope)
@@ -83,6 +87,51 @@ for some of the features of this token contract.
 ### Recommendations For The Token Contract Only
 
 These are the recommendations for the token contracts after the removal of the crowdsale contracts.
+
+<br />
+
+#### Outstanding Recommendations
+
+* **HIGH IMPORTANCE** As pointed out by `@thiago_btcsoul` and `@ma`, To achieve a 1% minter (the first one where
+  `mintingPower` = `maxMintingPower`), `mintingDec` should be `18` or `minMintingPower` and `maxMintingPower` may need
+  an additional `0`. @rohendra, please run a sample calculation to confirm.
+  
+  Enter the following code into [remix.ethereum.org](remix.ethereum.org):
+  
+      pragma solidity ^0.4.16;
+      
+      contract TestMintingPower {
+          uint public mintingPower = 1000000000000000000;
+          uint public balance = 1000000000000000000; // 10**18
+          uint public mintingDec = 19;
+      
+          function TestMintingPower() {
+              balance = balance + mintingPower * balance / 10**(mintingDec + 2);
+          }
+      }
+
+  `balance` will have the value of `1001000000000000000`
+  
+      > new BigNumber("1001000000000000000").shift(-18)
+      1.001
+
+  The above calculations show that a 0.1% increase is calculated, instead of the intended 1%
+
+* **MEDIUM IMPORTANCE** As recommended on Slack on Aug 28 2017:
+
+  > `availableBalanceOf(...)` should have a time parameter (and should be a constant function) and so different time 
+  > periods can be easily tested to verify the calculations. But a time parameterised `getDayCount()` and 
+  > `getPhaseCount(...)` will need to be implemented.
+
+  The above recommendation was implemented, but the function is internal with no other function providing the functionality
+  to access this `availableBalanceOf(...)` function externally.
+
+  Provide a function that allows users (and testers) to access the minting calculations so that future dates can be
+  tested
+
+<br />
+
+#### Closed Recommendations
 
 * **LOW IMPORTANCE** Add a `Transfer({source}, {destination}, {amount});` event log in `sellMintingAddress(...)`, `buyMintingAddress(...)`,
   `fetchSuccessfulSaleProceed()` and `refundFailedAuctionAmount()` - any where tokens are transferred
