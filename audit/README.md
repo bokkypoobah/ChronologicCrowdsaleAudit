@@ -33,8 +33,19 @@ The crowdsale code was removed from the repository and the refinment of the *Day
 [af42507](https://github.com/chronologic/chronologic/commit/af42507129c90682afedeae8c7b95ea17a73760b) and
 [33c4826](https://github.com/chronologic/chronologic/commit/33c4826aa51dbf720e2a3ed8385669b85a6926aa).
 
-On Sep 16 2015 the finalised *DayToken* contract was deployed to
-[0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945](https://etherscan.io/address/0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945#code).
+On Sep 16 2017 the finalised *DayToken* contract was deployed to
+**OBSOLETE** [0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945](https://etherscan.io/address/0x7268f9c2bc9c9e65b4a16888cb5672531ce8e945#code).
+**NOTE** There is an error in the deployment parameters in this token contract, and the token has been renamed to **YESTERDAY**.
+
+On Sep 19 2017 a new *DayToken* contract was deployed to
+[0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F](https://etherscan.io/address/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F#code)
+with the deployment parameters corrected, and the token has the symbol **DAY**. The same source code has been used as the
+**YESTERDAY** token contract, but `mintingDec=19`, `maxMintingPower=10,000,000,000,000,000,000` and
+`minMintingPower=5,000,000,000,000,000,000`. The **YESTERDAY** contract had one less 0 in the `maxMintingPower` and
+`minMintingPower` variables.
+
+The token explorer for the new **DAY** contract can be found at
+[0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F](https://etherscan.io/token/0xE814aeE960a85208C3dB542C53E7D4a6C8D5f60F).
 
 No potential vulnerabilities have been identified in the token contract.
 
