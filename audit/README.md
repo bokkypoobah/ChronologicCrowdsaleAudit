@@ -1,7 +1,5 @@
 # ChronoLogic Crowdsale Contract Audit
 
-Status: Minting power calculations to be checked
-
 <br />
 
 ## Summary
